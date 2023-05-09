@@ -1,15 +1,13 @@
 import React,{useState} from 'react'
-const AddTopics = () => {
+const AddQuestions = () => {
     const[name,setname] = useState("");
-    const[subtopic,setsubtopic] = useState("");
-    const[heading,setheading] = useState("");
     const[description,setDescription] = useState("");
     const[message,setMessage] = useState("");
-    const SaveTopic = async(e) =>{
+    const SaveQuestion = async(e) =>{
         console.log(e);
     e.preventDefault();
         try {
-            let res = await fetch("http://localhost:5000/topics/addTopics",{
+            let res = await fetch("http://localhost:5000/questions/addQuestions",{
         method:"POST",
         crossDomain:true,
         headers:{
@@ -19,20 +17,15 @@ const AddTopics = () => {
         },
         body:JSON.stringify({
             name:name,
-            subtopic:subtopic,
-            heading:heading,
             description:description
         }),
      }).then((res) => res.json())
      .then((data) => {
-       console.log(data, "TopicAdded");
+       console.log(data, "QuestionAdded");
        setname("");
-         setsubtopic("");
-         setheading("");
-         setDescription("");
-         setMessage("Topic added successfully");
+       setDescription("");
+       setMessage("Question added successfully");
        });
-       //let resJson = await res.json();
             
         } catch (error) {
             console.log(error);
@@ -43,46 +36,27 @@ const AddTopics = () => {
   return (
     <>
     <h1>Add Topic</h1>
-    <form onSubmit={SaveTopic}>
+    <form onSubmit={SaveQuestion}>
 
     
     <div className="mb-3">
-            <label>Name</label>
-            <input
+            <label>Question</label>
+            <textarea
               type="text"
               className="form-control"
-              placeholder="Name"
+              placeholder="Question"
+              style={{height:"150px", width :"300px" }}
               onChange={(e)=>setname(e.target.value)}
             />
           </div>
 
           <div className="mb-3">
-            <label>SubTopic</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="SubTopic"
-              onChange={(e)=>setsubtopic(e.target.value)}
-            />
-          </div>
-
-          <div className="mb-3">
-            <label>Heading</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Heading"
-              onChange={(e)=>setheading(e.target.value)}
-            />
-          </div>
-
-          <div className="mb-3">
-            <label>Description</label>
+            <label>Answer</label>
             <textarea
               type="text"
               className="form-control"
-              placeholder="Description"
-              style={{height:"200px", width :"300px" }}
+              placeholder="Answer"
+              style={{height:"150px", width :"300px" }}
               onChange={(e)=>setDescription(e.target.value)}
             />
           </div>
@@ -98,4 +72,4 @@ const AddTopics = () => {
   )
 }
 
-export default AddTopics
+export default AddQuestions

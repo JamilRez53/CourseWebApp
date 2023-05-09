@@ -3,8 +3,8 @@ import { useParams,useNavigate, Link } from 'react-router-dom'
 import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
 const UpdateTopics = () => {
-  const  navigate = useNavigate();
-    const {id}=useParams();
+  const {id} =useParams();
+    const navigate = useNavigate();
     const[inputdata,setinputData] = useState({name:'',subtopic:'',heading:'',description:''})
     const{ name, subtopic, heading,description } = inputdata;
     useEffect(() => {
@@ -14,9 +14,12 @@ const UpdateTopics = () => {
      await axios.get(`http://localhost:5000/topics/getSingleTopics/${id}`).then(res => setinputData(res.data))
            
     }
-    const UpdateTopic = async() =>{
-     await axios.post(`http://localhost:5000/topics/updateTopics/${id}`,inputdata)
+    const UpdateTopic = async(e) =>{
+      e.preventDefault()
+     await axios.post(`http://localhost:5000/topics/updateTopics/${id}`,inputdata).then(res=>{
+      navigate('/topics')})
      alert("Topics Updated Successfully!!");
+     e.target.reset();
     
   }
   
