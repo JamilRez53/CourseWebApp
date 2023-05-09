@@ -9,6 +9,7 @@ const userRoute = require("./routes/userDetails")
 const adminRoute = require("./routes/admin")
 const adminInfo = require("./routes/adminInfo");
 const topicInfo = require("./routes/topics");
+const questionInfo = require("./routes/questions");
 const auth = require("./middleware/auth")
 const cors=require("cors");
 
@@ -34,9 +35,10 @@ mongoose.connect(
   app.use("/admin/",adminRoute);
   app.use("/adminInfo/",adminInfo);
   app.use("/topics/",topicInfo);
-  app.get("/secret/",auth,(req,res)=>{
-    res.sender("Secret");
-  });
+  app.use("/questions/",questionInfo);
+  // app.get("/secret/",auth,(req,res)=>{
+  //   res.sender("Secret");
+  // });
   
 app.listen(5000,()=>{
     console.log("Server running at port 5000");
