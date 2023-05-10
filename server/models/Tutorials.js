@@ -1,25 +1,22 @@
 const mongoose = require("mongoose")
 
 const QuestionSchema = new mongoose.Schema({
-    title:{
+    name:{
         type: String,
         require: true,
     },
-    subtopic:{
-        type: String,
-        require: true,
-    },
-    heading: {
+   
+    description: {
         type: String,
         required: true,
       },
-      VideoUrl: {
-        type: String,
-        required: true,
-      },
+      videos: [
+        {type: String,
+        required: true,}
+        ],
       
       
      
 },
 { timestamps: true });
-module.exports = mongoose.model("questions", QuestionSchema);
+module.exports = mongoose.model("tutorials", QuestionSchema);

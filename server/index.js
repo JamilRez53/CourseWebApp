@@ -10,10 +10,10 @@ const adminRoute = require("./routes/admin")
 const adminInfo = require("./routes/adminInfo");
 const topicInfo = require("./routes/topics");
 const questionInfo = require("./routes/questions");
+const tutorialInfo = require("./routes/tutorials");
 const auth = require("./middleware/auth")
 const cors=require("cors");
-
-
+const path = require("path");
 
 dotenv.config();
 mongoose.connect(
@@ -36,6 +36,8 @@ mongoose.connect(
   app.use("/adminInfo/",adminInfo);
   app.use("/topics/",topicInfo);
   app.use("/questions/",questionInfo);
+  app.use("/tutorials/",tutorialInfo);
+  app.use("/public", express.static(path.join(__dirname, "public")));
   // app.get("/secret/",auth,(req,res)=>{
   //   res.sender("Secret");
   // });
