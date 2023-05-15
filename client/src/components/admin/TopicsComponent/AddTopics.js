@@ -1,9 +1,12 @@
-import React,{useState} from 'react'
+import React,{useState,useRef} from 'react'
+import JoditEditor from 'jodit-react';
+import  "./Jodit.css";
+import "./AddTopics.css"
 const AddTopics = () => {
-    const[name,setname] = useState("");
-    const[subtopic,setsubtopic] = useState("");
-    const[heading,setheading] = useState("");
-    const[description,setDescription] = useState("");
+  const editor = useRef(null);
+    const[name,setname] = useState('');
+    const[heading,setHeading] = useState('');
+    const[description,setDescription] = useState('');
     const[message,setMessage] = useState("");
     const SaveTopic = async(e) =>{
         console.log(e);
@@ -19,31 +22,35 @@ const AddTopics = () => {
         },
         body:JSON.stringify({
             name:name,
-            subtopic:subtopic,
             heading:heading,
             description:description
         }),
-     }).then((res) => res.json())
-     .then((data) => {
+     }).then((data) => {
        console.log(data, "TopicAdded");
        setname("");
-         setsubtopic("");
-         setheading("");
-         setDescription("");
+       setDescription("");
+       setHeading("");
          setMessage("Topic added successfully");
        });
        //let resJson = await res.json();
-            
+          window.location.href="./Topics"
+          e.target.reset();
         } catch (error) {
             console.log(error);
         }
         e.target.reset();
     }
+    const contentFieldChanaged = (data) => {
 
+      setDescription({ ...description, 'content': data })
+
+
+  }
+  
   return (
     <>
     <h1>Add Topic</h1>
-    <form onSubmit={SaveTopic}>
+    <form className="topic-container" onSubmit={SaveTopic}>
 
     
     <div className="mb-3">
@@ -55,37 +62,24 @@ const AddTopics = () => {
               onChange={(e)=>setname(e.target.value)}
             />
           </div>
-
-          <div className="mb-3">
-            <label>SubTopic</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="SubTopic"
-              onChange={(e)=>setsubtopic(e.target.value)}
-            />
-          </div>
-
           <div className="mb-3">
             <label>Heading</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="Heading"
-              onChange={(e)=>setheading(e.target.value)}
-            />
-          </div>
-
-          <div className="mb-3">
-            <label>Description</label>
             <textarea
               type="text"
               className="form-control"
-              placeholder="Description"
-              style={{height:"200px", width :"300px" }}
-              onChange={(e)=>setDescription(e.target.value)}
+              placeholder="Heading"
+              onChange={(e)=>setHeading(e.target.value)}
             />
           </div>
+
+            <label>Description</label>
+          <JoditEditor 
+			ref={editor}
+			value={description.content}
+			onChange={(newContent) => contentFieldChanaged(newContent)}
+      className="toolbar-component"
+		/>
+          
 
           <div className="d-grid">
             <button type="submit" className="btn btn-primary">

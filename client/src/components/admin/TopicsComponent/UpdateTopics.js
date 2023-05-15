@@ -5,8 +5,8 @@ import axios from 'axios';
 const UpdateTopics = () => {
   const {id} =useParams();
     const navigate = useNavigate();
-    const[inputdata,setinputData] = useState({name:'',subtopic:'',heading:'',description:''})
-    const{ name, subtopic, heading,description } = inputdata;
+    const[inputdata,setinputData] = useState({name:'',heading:'',description:''})
+    const{ name, heading,description } = inputdata;
     useEffect(() => {
       getTopics();
     }, []);
@@ -43,19 +43,8 @@ const UpdateTopics = () => {
           </div>
 
           <div className="mb-3">
-            <label>SubTopic</label>
-            <input
-              type="text"
-              className="form-control"
-              placeholder="SubTopic"
-              value={subtopic}
-              onChange={(e)=>setinputData({...inputdata,subtopic:e.target.value})}
-            />
-          </div>
-
-          <div className="mb-3">
             <label>Heading</label>
-            <input
+            <textarea
               type="text"
               className="form-control"
               placeholder="Heading"

@@ -12,9 +12,6 @@ import TableContainer from "@material-ui/core/TableContainer";
 import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
-import AddTopics from '../../components/admin/TopicsComponent/AddTopics';
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import { MenuItem } from '@material-ui/core';
@@ -28,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       alignItems: 'center',
       marginBottom: '20px',
-      marginLeft: '650px'
+      //marginLeft: '650px'
     },
     searchInput: {
       
@@ -78,7 +75,12 @@ const Topics = () => {
   const setClose = () =>{
     setModalOpen(false);
   }
-  
+  // // const showEditModal =()=>{
+  // //   setEditModalOpen(true);
+  // // }
+  // // const closeEditModal =()=>{
+  // //   setEditModalOpen(false);
+  // }
   // const fetchData = async() =>{
   //   await fetch("http://localhost:5000/topics/getTopics",{
   //           method:"GET",
@@ -108,17 +110,17 @@ const Topics = () => {
     }
   }
   const SearchTopic = async() =>{
-    await axios.get(`http://localhost:5000/topics/search/${topicname}`).then(res=>{
+    await axios.get(`http://localhost:5000/topics/searchTopic/${topicname}`).then(res=>{
      setTopics(res.data)
     })
   }
   const handlePageClick = async(e) =>{
       console.log(e);
       currentPage.current=e.selected+1;
-      getPaginatedUsers();
+      getPaginatedTopics();
       
   }
-  const getPaginatedUsers = async()=>{
+  const getPaginatedTopics = async()=>{
      await fetch(`http://localhost:5000/topics/paginatedTopics?page=${currentPage.current}&limit=${limit}`,{
             method:"GET",
          }).then((res) => res.json())
@@ -131,7 +133,7 @@ const Topics = () => {
   useEffect(()=>{
     currentPage.current=1;
    // fetchData();
-    getPaginatedUsers();
+    getPaginatedTopics();
   },[]);
   
   
@@ -139,7 +141,7 @@ const Topics = () => {
     <>
     
     <Navbar/>
-     <Button sx={{marginTop: 2, marginBottom:2 ,marginLeft:'730px'}} onClick={setShow}>Add Topics</Button>
+     <Button   component={Link} to={"/addTopics"}>Add Topics</Button>
 
      <div className={classes.searchContainer}>
     
@@ -170,8 +172,7 @@ const Topics = () => {
         <TableHead>
           <StyledTableRow>
             <StyledTableCell >Name</StyledTableCell>
-            <StyledTableCell >SubTopic</StyledTableCell>
-            <StyledTableCell > Heading</StyledTableCell>
+            <StyledTableCell>Heading</StyledTableCell>
             <StyledTableCell >Actions</StyledTableCell>
            
           </StyledTableRow>
@@ -184,15 +185,17 @@ const Topics = () => {
               <StyledTableCell  component="th" scope="row">
                 {topic.name}
               </StyledTableCell>
-              <StyledTableCell >{topic.subtopic}</StyledTableCell>
-              <StyledTableCell >{topic.heading}</StyledTableCell>
+              <StyledTableCell  component="th" scope="row">
+                {topic.heading}
+              </StyledTableCell>
               <StyledTableCell  >
                 <IconButton arial-label="edit" component={Link} to={`/viewTopics/${topic._id}`}>
                   <Visibility/>
                 </IconButton>
               <IconButton  aria-label="edit" component={Link} to={`/editTopics/${topic._id}`}>
+              
         <Edit />
-  
+       
       </IconButton>
       <IconButton onClick={()=>deleteTopic(topic._id,topic.name)} aria-label="delete">
         <Delete/>
@@ -223,24 +226,6 @@ const Topics = () => {
             activeClassName="active"
             
       />
-    <Modal
-  open={isModalOpen}
-  onClose={setClose}
-  aria-labelledby="modal-modal-title"
-  aria-describedby="modal-modal-description"
->
-  <Box sx={{position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,}}>
-   <AddTopics/>
-  </Box>
-</Modal>
 
 </>
   )
