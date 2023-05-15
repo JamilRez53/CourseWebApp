@@ -11,6 +11,7 @@ router.get("/getTopics",async(req,res)=>{
       }
 
 })
+
 router.get("/getSingleTopics/:id",async(req,res)=>{
   try{
     const topic = await Topics.findById(req.params.id);
@@ -23,8 +24,7 @@ router.post("/addTopics",async(req,res)=>{
     //create new topic
     const newTopic = new Topics({
         name: req.body.name,
-        subtopic: req.body.subtopic,
-        heading: req.body.heading,
+        heading:req.body.heading,
         description: req.body.description,
       });
       //save Topic and response
@@ -40,7 +40,6 @@ router.post("/addTopics",async(req,res)=>{
 router.post("/updateTopics/:id",async(req,res)=>{
   const updateTopic = ({
     name: req.body.name,
-    subtopic: req.body.subtopic,
     heading: req.body.heading,
     description: req.body.description,
   });
@@ -89,7 +88,7 @@ router.get("/paginatedTopics",async(req,res)=>{
   results.result = allTopics.slice(startIndex,lastIndex);
   res.json(results);
 })
-router.get("/search/:name",async(req,res)=>{
+router.get("/searchTopic/:name",async(req,res)=>{
   try {
     const findname = req.params.name;
     const searchedTopic = await Topics.find({"name":{$regex:'.*'+findname+'.*'}})
