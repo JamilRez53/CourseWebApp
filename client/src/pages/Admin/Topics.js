@@ -25,10 +25,10 @@ const useStyles = makeStyles((theme) => ({
       display: 'flex',
       alignItems: 'center',
       marginBottom: '20px',
-      //marginLeft: '650px'
+      marginLeft: '600px'
     },
     searchInput: {
-      
+      marginLeft:"600px",
       borderRadius: theme.shape.borderRadius,
     },
     menuItem: {
@@ -141,7 +141,7 @@ const Topics = () => {
     <>
     
     <Navbar/>
-     <Button   component={Link} to={"/addTopics"}>Add Topics</Button>
+     <Button sx={{marginLeft:"650px"}}  component={Link} to={"/addTopics"}>Add Topics</Button>
 
      <div className={classes.searchContainer}>
     

@@ -13,6 +13,7 @@ const ViewDetails = () => {
       await axios.get(`http://localhost:5000/topics/getSingleTopics/${id}`).then(res => setTopic(res.data))
             
      }
+     
 useEffect(()=>{
   getTopic();
 },[])
@@ -26,7 +27,8 @@ return (
   { topic && (
       <div className='topic-container'>
            
-          <Typography variant='h2'>{topic.name}</Typography>
+          <Typography variant='h2' sx={{marginTop:'80px'}}>{topic.name}</Typography>
+          <Typography sx={{marginTop:'20px'}}>{topic.heading}</Typography>
           <ReactQuill theme="snow"  modules={{ toolbar: [] }} value={topic.description} readOnly={true} />
       </div>
 

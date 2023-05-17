@@ -1,5 +1,6 @@
 import React ,{useState}from 'react'
-
+import Admin from "../../../assets/Admin.png"
+import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 const UserAuth = () => {
     const[email,setEmail] = useState("");
     const[password,setPassword] = useState("");
@@ -42,7 +43,11 @@ const UserAuth = () => {
     <div className="auth-wrapper">
     <div className="auth-inner">
       <form onSubmit={handleInputs}>
-        <h3>Sign Up</h3>
+       <div>
+          <img src={Admin} style={{width:"200px", marginLeft:"60px"}}/>
+        </div>
+        <h3> Admin Login</h3>
+        
         <div className="mb-3">
           <label>Email address</label>
           <input

@@ -16,7 +16,7 @@ const UpdateTutorials = () => {
     }
     const UpdateTutorial = async(e) =>{
       e.preventDefault()
-     await axios.post(`http://localhost:5000/topics/updateTopics/${id}`,inputdata).then(res=>{
+     await axios.post(`http://localhost:5000/tutorials/updateTutorial/${id}`,inputdata).then(res=>{
       navigate('/tutorials')})
      alert("Tutorial Info Updated Successfully!!");
      e.target.reset();
@@ -50,7 +50,7 @@ const UpdateTutorials = () => {
               placeholder="Description"
               style={{height:"200px", width :"300px" }}
               value={description}
-              onChange={(e)=>setinputData({...inputdata,name:e.target.value})}
+              onChange={(e)=>setinputData({...inputdata,description:e.target.value})}
             />
           </div>
           <div className="d-grid">

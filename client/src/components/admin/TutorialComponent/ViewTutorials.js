@@ -27,8 +27,9 @@ const ViewTutorials = () => {
             {tutorial.videos.map((video)=>{
                 return(
                  <video   preload="auto"
-                 width="320"
+                 width="400"
                  height="240"
+                 marginleft="50px"
                  controls>
                     <source src={`http://localhost:5000${video}`}/>
                  </video>

@@ -5,6 +5,7 @@ import jwt_decode from "jwt-decode";
 import {useGoogleLogin} from '@react-oauth/google';
 import axios from "axios"
 import {GoogleLogin} from 'react-google-login'
+
 const UserAuth = () => {
     const[email,setEmail] = useState("");
     const[password,setPassword] = useState("");
@@ -34,7 +35,7 @@ const UserAuth = () => {
             window.localStorage.setItem("token", data.data);
             window.localStorage.setItem("loggedIn", true);
   
-            window.location.href = "./User";
+            window.location.href = "./userTopics";
           }
          });
         

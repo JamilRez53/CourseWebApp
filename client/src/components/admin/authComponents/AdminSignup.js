@@ -1,5 +1,6 @@
 import React from 'react'
 import { useState } from 'react'
+import Admin from "../../../assets/Admin-1.png"
 const Signup = () => {
   
   const[email,setEmail] = useState("");
@@ -38,6 +39,7 @@ const Signup = () => {
              setEmail("");
              setPassword("");
              setMessage("Admin created successfully");
+             window.location.href="./admin"
            } else {
              setMessage("Some error occured");
            }
@@ -54,6 +56,9 @@ const Signup = () => {
     <div className="auth-wrapper">
       <div className="auth-inner">
         <form onSubmit={handleInputs}>
+        <div>
+          <img src={Admin} style={{width:"200px", marginLeft:"60px"}}/>
+        </div>
           <h3>Sign Up</h3>
 
           <div className="mb-3">

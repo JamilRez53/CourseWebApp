@@ -22,6 +22,7 @@
 .form_container {
     display: flex;
     margin-top: 45px;
+    margin-left: 300px;
     width: 900px;
     height: 550px;
     background-color: white;

@@ -8,7 +8,8 @@ body {
   min-height: 100vh;
   display: flex;
   font-weight: 400;
-  font-family: "Fira Sans", sans-serif;
+  margin: 0;
+  font-family: 'Poppins', sans-serif;
 }
 
 h1,
