@@ -81,23 +81,11 @@ router.post("/addTutorial", upload.fields([
       }
     
 })
-router.post("/updateTutorial/:id",upload.fields([
-    {
-      name: "videos",
-      maxCount: 5,
-    },
-  ]),async(req,res)=>{
-    let videosPaths = [];
+router.post("/updateTutorial/:id",async(req,res)=>{
 
-    if (Array.isArray(req.files.videos) && req.files.videos.length > 0) {
-      for (let video of req.files.videos) {
-        videosPaths.push("/" + video.path);
-      }
-    }
   const updateTutorial = ({
     name: req.body.name,
     description: req.body.description,
-    videos: videosPaths
   });
   //save Topic and response
   try {
