@@ -16,6 +16,7 @@ const cookieSession = require("cookie-session");
 const cors=require("cors");
 const path = require("path");
 const passport = require("passport");
+const bodyParser = require('body-parser');
 const passportStrategy = require("./passport");
 dotenv.config();
 mongoose.connect(
@@ -33,6 +34,8 @@ mongoose.connect(
       maxAge: 24 * 60 * 60 * 100,
     })
   );
+  app.use(bodyParser.urlencoded({ extended: false }))
+  app.use(bodyParser.json());
   app.use(cors());
   app.use(express.json());
   app.use(helmet());

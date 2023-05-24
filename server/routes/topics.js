@@ -1,6 +1,8 @@
 const Topics = require("../models/Topics");
 const router = require('express').Router();
 const mongoose = require('mongoose');
+var ObjectID = require('mongodb').ObjectID;
+const slugify = require('slugify');
 router.get("/getTopics",async(req,res)=>{
    
       try {
@@ -22,22 +24,44 @@ router.get("/getSingleTopics/:id",async(req,res)=>{
 })
 router.post("/addTopics",async(req,res)=>{
     //create new topic
-    const newTopic = new Topics({
-        name: req.body.name,
-        heading:req.body.heading,
-        description: req.body.description,
-      });
-      //save Topic and response
-      try {
-       const topic = await newTopic.save();
-       res.status(200).json(topic);
-       return;
-      } catch (err) {
-       console.log(err)
-      }
-    
+    // const newTopic = new Topics({
+    //     name: req.body.name,
+    //     heading:req.body.heading,
+    //     description: req.body.description,
+    //     //descs: req.body.description,
+    //   });
+    //   //save Topic and response
+    //   try {
+    //    const topic = await newTopic.save();
+    //    res.status(200).json(topic);
+    //    return;
+    //   } catch (err) {
+    //    console.log(err)
+    //   }
+    const { name,heading,description } = req.body;
+    const slug = slugify(name);
+    // validate
+    switch (true) {
+        case !name:
+            return res.status(400).json({ error: 'Title is required' });
+            break;
+        case !heading:
+            return res.status(400).json({ error: 'heading is required' });
+            break;
+        case !description:
+            return res.status(400).json({ error: 'Content is required' });
+            break;
+    }
+    // create post
+    Topics.create({ name, heading, description,slug }, (err, topic) => {
+        if (err) {
+            console.log(err);
+            res.status(400).json({ error: 'Duplicate post. Try another title' });
+        }
+        res.json(topic);
+    });
 })
-router.post("/updateTopics/:id",async(req,res)=>{
+router.put("/updateTopics/:id",async(req,res)=>{
   const updateTopic = ({
     name: req.body.name,
     heading: req.body.heading,
@@ -45,11 +69,18 @@ router.post("/updateTopics/:id",async(req,res)=>{
   });
   //save Topic and response
   try {
-   await Topics.updateOne({_id:req.params.id},updateTopic);
+  await Topics.updateOne({_id:req.params.id},updateTopic);
    res.status(200).json(updateTopic);
   } catch (err) {
    console.log(err)
   }
+  // const { slug } = req.params;
+  // //var myId = req.params;
+  //   const { name, heading,description } = req.body;
+  //   Topics.findByIdAndUpdate({slug} , { name, heading,description }, { new: true }).exec((err, topic) => {
+  //       if (err) console.log(err);
+  //       res.json(topic);
+  //   });
 
 })
 router.post("/deleteTopics",async(req,res)=>{

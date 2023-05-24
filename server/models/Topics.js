@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const sanitizeHtml = require('sanitize-html')
+const { ObjectId } = mongoose.Schema;
 const TopicSchema = new mongoose.Schema({
     name:{
         type: String,
@@ -10,11 +11,27 @@ const TopicSchema = new mongoose.Schema({
       type: String,
       require: true,
     },
-    description: { type: String, set: function (value) {
-      const htmlString = value.content; // Extract the HTML string from the object
-      return sanitizeHtml(htmlString); // Remove HTML tags from the HTML string
-    }},
-      
+    slug: {
+      type: String,
+      unique: true,
+      index: true,
+      lowercase: true
+  },
+    // descs:{
+    //  type: String,
+    //  set: function (value) {
+    //   const htmlString = value.content; // Extract the HTML string from the object
+    //   return sanitizeHtml(htmlString); // Remove HTML tags from the HTML string
+    // }},
+    // description: { type: String, set: function (value) {
+    //   const htmlString = value.content; // Extract the HTML string from the object
+    //   return sanitizeHtml(htmlString); // Remove HTML tags from the HTML string
+    // }},
+      description:{
+        type:{},
+        required: true,
+        min:6,
+      }
       
      
 },

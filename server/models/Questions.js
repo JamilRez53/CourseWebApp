@@ -5,6 +5,10 @@ const QuestionSchema = new mongoose.Schema({
         type: String,
         require: true,
     },
+    options:[{
+     type: String,
+     require: true,
+    }],
       description: {
         type: String,
         required: true,
