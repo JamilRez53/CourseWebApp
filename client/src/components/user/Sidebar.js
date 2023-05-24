@@ -20,7 +20,7 @@ export default function TemporaryDrawer({state,setState,toggleDrawer}) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Topics', 'Questions','UserTutorials'].map((text, index) => (
+        {['Topics', 'Quiz','UserTutorials'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton  href={`./${text.toLowerCase()}`}>
               <ListItemIcon>

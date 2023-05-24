@@ -2,17 +2,23 @@ import React,{useState,useRef} from 'react'
 import JoditEditor from 'jodit-react';
 import  "./Jodit.css";
 import "./AddTopics.css"
+import ReactQuill from 'react-quill';
+import axios from 'axios';
 const AddTopics = () => {
   const editor = useRef(null);
     const[name,setname] = useState('');
     const[heading,setHeading] = useState('');
     const[description,setDescription] = useState('');
     const[message,setMessage] = useState("");
+    const handleContent = (event) => {
+      console.log(event);
+      setDescription(event);
+    };
     const SaveTopic = async(e) =>{
         console.log(e);
     e.preventDefault();
         try {
-            let res = await fetch("http://localhost:5000/topics/addTopics",{
+            let res = await axios.post("http://localhost:5000/topics/addTopics",{name,heading,description},{
         method:"POST",
         crossDomain:true,
         headers:{
@@ -33,7 +39,7 @@ const AddTopics = () => {
          setMessage("Topic added successfully");
        });
        //let resJson = await res.json();
-          window.location.href="./Topics"
+       //   window.location.href="./Topics"
           e.target.reset();
         } catch (error) {
             console.log(error);
@@ -46,6 +52,20 @@ const AddTopics = () => {
 
 
   }
+  const  modules  = {
+    toolbar: [
+        [{ font: [] }],
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        ["bold", "italic", "underline", "strike"],
+        [{ color: [] }, { background: [] }],
+        [{ script:  "sub" }, { script:  "super" }],
+        ["blockquote", "code-block"],
+        [{ list:  "ordered" }, { list:  "bullet" }],
+        [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
+        ["link", "image", "video"],
+        ["clean"],
+    ],
+};
   
   return (
     <>
@@ -73,13 +93,20 @@ const AddTopics = () => {
           </div>
 
             <label>Description</label>
-          <JoditEditor 
+          {/* <JoditEditor 
 			ref={editor}
 			value={description.content}
 			onChange={(newContent) => contentFieldChanaged(newContent)}
       className="toolbar-component"
-		/>
-          
+		/> */}
+          <ReactQuill
+          theme='snow'
+          className='ql-container'
+          modules={modules}
+          value={description}
+          onChange={handleContent}
+          />
+            
 
           <div className="d-grid">
             <button type="submit" className="btn btn-primary">

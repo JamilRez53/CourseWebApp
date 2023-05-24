@@ -24,6 +24,10 @@ import UserTutorials from './components/user/userTutorialComponents/UserTutorial
 import UserProfile from './components/user/UserProfile/UserProfile';
 import UserEdit from './components/user/UserProfile/UserEdit';
 import Home from './pages/Home';
+import Quiz from './pages/User/Quiz';
+import QuestionSet from './components/user/quizComponents/QuestionSet'
+import Results from './components/user/quizComponents/Results';
+import QuizMain from './components/user/quizComponents/QuizMain';
 function App() {
   const islogged = window.localStorage.getItem("loggedIn");
   const isAdminLogged = window.localStorage.getItem("adminloggedIn");
@@ -53,6 +57,10 @@ function App() {
      <Route path="/profile" element={<UserProfile/>}/>
      <Route path="/tutorialdetail/:id" element={<TutorialDetail/>}/>
      <Route path="/editUser/:id" element={<UserEdit/>}/>
+     <Route path="/quiz/" element={<Quiz/>}/>
+     <Route path="/questionset/" element={<QuestionSet/>}/>
+     <Route path="/result/" element={<Results/>}/>
+     <Route path="/quizmain/" element={<QuizMain/>}/>
       </Routes>
      
     </div>

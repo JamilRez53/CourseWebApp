@@ -1,61 +1,95 @@
 import React ,{useState,useEffect, useRef}from 'react'
 import { useParams,useNavigate, Link } from 'react-router-dom'
-import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
+// import "../../../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import axios from 'axios';
+import "./UpdateTopics.css";
 import JoditEditor from 'jodit-react'
+import Reactquill from 'react-quill'
 const UpdateTopics = () => {
-  const editor = useRef();
-  const {id} =useParams();
-    const navigate = useNavigate();
-    const[inputdata,setinputData] = useState({name:'',heading:'',description:''})
-    const{ name, heading,description } = inputdata;
+  const editor = useRef(null);
+     const {id} =useParams();
+   // const navigate = useNavigate();
+    const[inputdata,setinputData] = useState({name:'',heading:''})
+    const[description,setDescription] = useState('')
+    // const[description,setDescription] = useState('')
+    const{ name, heading } = inputdata;
     useEffect(() => {
       getTopics();
     }, []);
     const getTopics = async ()=>{
-     await axios.get(`http://localhost:5000/topics/getSingleTopics/${id}`).then(res => setinputData(res.data))
-           
+     await axios.get(`http://localhost:5000/topics/getSingleTopics/${id}`).then((res)=>{
+      const { name,heading, description } = res.data;
+     setinputData({...inputdata,name,heading});
+     setDescription(description);
+     console.log(setinputData(res.data))
+    })
+      // console.log(inputdata);
+      // console.log(description);     
     }
     const UpdateTopic = async(e) =>{
       console.log(e);
     e.preventDefault();
         try {
-            let res = await fetch(`http://localhost:5000/topics/updateTopics/${id}`,{
-        method:"POST",
-        crossDomain:true,
-        headers:{
-            "Content-Type": "application/json",
-        Accept: "application/json",
-        "Access-Control-Allow-Origin": "*",
-        },
-        body:JSON.stringify({
-           inputdata:inputdata
-        }),
-     }).then((data) => {
-       console.log(data, "TopicAdded");
-       setinputData(" ")
-        //  setMessage("Topic added successfully");
-       });
+        await axios.put(`http://localhost:5000/topics/updateTopics/${id}`, {name,heading,description})
+        // .then((res)=>{
+        //   console.log(res.data);
+        //   setinputData(res.data);
+        //   console.log(setinputData(res.data))
+        //   //window.location.href="/topics"
+        // })
+        .then((response) => {
+        console.log(response);
+        const { name, heading,description } = response.data;
+        // empty state
+        setinputData({ ...inputdata, name,description,heading });
+        
+
+        // show sucess alert
+       // alert(`${name} blog post is updated`);
+      });
        //let resJson = await res.json();
-          window.location.href="./Topics"
-          e.target.reset();
+          // window.location.href="./Topics"
+          // e.target.reset();
         } catch (error) {
             console.log(error);
         }
-        e.target.reset();
+        //e.target.reset();
     
   }
-  const handleChange = (value) => {
-    setinputData({...description,'data':value});
-  }
-  
-  
+  // const handleChange = (name) => (event) => {
+  //   // console.log('name', name, 'event', event.target.value);
+  //   setinputData({ ...inputdata, [name]: event.target.value });
+  // };
+  const handleContent = (event) => {
+    console.log(event);
+    setDescription(event);
+  };
+  const handleChange = (event,fieldName) => {
+    console.log(event);
+    setinputData({
+      ...inputdata,
+      [fieldName]: event.target.value
+  })
+  };
+  const  modules  = {
+    toolbar: [
+        [{ font: [] }],
+        [{ header: [1, 2, 3, 4, 5, 6, false] }],
+        ["bold", "italic", "underline", "strike"],
+        [{ color: [] }, { background: [] }],
+        [{ script:  "sub" }, { script:  "super" }],
+        ["blockquote", "code-block"],
+        [{ list:  "ordered" }, { list:  "bullet" }],
+        [{ indent:  "-1" }, { indent:  "+1" }, { align: [] }],
+        ["link", "image", "video"],
+        ["clean"],
+    ],
+};
   return (
     <>
     
-    <div className="auth-wrapper">
-    <div className="auth-inner">
-        <form onSubmit={UpdateTopic}>
+    
+        <form className='topic-container' onSubmit={UpdateTopic}>
         <h1>UpdateTopic</h1>  
     <div className="mb-3">
             <label>Name</label>
@@ -64,8 +98,12 @@ const UpdateTopics = () => {
               className="form-control"
               placeholder="Name"
               value={name}
-              onChange={(e)=>setinputData({...inputdata,name:e.target.value})}
+              onChange={(event) => handleContent(event, 'name')}
             />
+             {/* <JoditEditor
+          ref={editor}
+          value={name}
+          onChange={newContent => setinputData({ ...inputdata, name: newContent })}/> */}
           </div>
 
           <div className="mb-3">
@@ -75,14 +113,33 @@ const UpdateTopics = () => {
               className="form-control"
               placeholder="Heading"
               value={heading}
-              onChange={(e)=>setinputData({...inputdata,heading:e.target.value})}
+              onChange={(event) => handleChange(event, 'heading')}
             />
           </div>
-
+          {/* <div className="mb-3">
+            
+            <textarea
+              type="text"
+              className="form-control"
+              placeholder="Description"
+              value={description}
+              onChange={(event) => handleContent(event, 'description')}
+            />
+          </div> */}
+          {/* <div className="mb-3">
+          <label>Description</label>
           <JoditEditor
           ref={editor}
-          value={inputdata.description}
-          onChange={handleChange}
+          value={description}
+          onChange={newContent => setinputData({ ...inputdata, description: newContent })}
+          />
+          </div> */}
+          
+          <Reactquill
+          theme='snow'
+          modules={modules}
+          value={description}
+          onChange={handleContent}
           />
 
           <div className="d-grid">
@@ -91,8 +148,7 @@ const UpdateTopics = () => {
             </button>
           </div>
         </form>
-        </div>
-        </div>
+        
       </>
   )
 }

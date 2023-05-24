@@ -19,7 +19,9 @@ import { MenuItem } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     table: {
-      minWidth: 700,
+      width: 1000,
+      marginLeft:"250px",
+      marginTop:'20px',
     },
     searchContainer: {
       display: 'flex',
@@ -36,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: theme.palette.primary.main,
         color: theme.palette.common.white,
       },
-      marginLeft:'650px',
+      marginLeft:'600px',
       width:'250px'
     }
  
@@ -56,7 +58,7 @@ const Topics = () => {
       color: theme.palette.common.white,
     },
     body: {
-      fontSize: 14,
+      fontSize: 16,
      
     },
   }))(TableCell);
@@ -75,21 +77,7 @@ const Topics = () => {
   const setClose = () =>{
     setModalOpen(false);
   }
-  // // const showEditModal =()=>{
-  // //   setEditModalOpen(true);
-  // // }
-  // // const closeEditModal =()=>{
-  // //   setEditModalOpen(false);
-  // }
-  // const fetchData = async() =>{
-  //   await fetch("http://localhost:5000/topics/getTopics",{
-  //           method:"GET",
-  //        }).then((res) => res.json())
-  //        .then((data) => {
-  //          console.log(data, "TopicsData");
-  //          setTopics(data.data);
-  //        })
-  // }
+ 
   const deleteTopic = async(id,name) =>{
     if(window.confirm(`Are u sure u want to delete the topic ${name}`)){
      await fetch("http://localhost:5000/topics/deleteTopics",{
@@ -141,7 +129,7 @@ const Topics = () => {
     <>
     
     <Navbar/>
-     <Button sx={{marginLeft:"650px"}}  component={Link} to={"/addTopics"}>Add Topics</Button>
+     <Button sx={{marginLeft:"670px"}}  component={Link} to={"/addTopics"}>Add Topics</Button>
 
      <div className={classes.searchContainer}>
     
@@ -160,14 +148,15 @@ const Topics = () => {
      </div>
      {topics!==null && topics.filter(item=>{
           const searchTerm = topicname.toLowerCase();
-          const full_topic = item.name.toLowerCase();
+          //const full_topic = item.name.toLowerCase();
+          const full_topic = item.name;
           return searchTerm && full_topic.startsWith(searchTerm) && full_topic!==searchTerm;
         }).map((item)=>(
          <MenuItem key={item._id} onClick={()=>{setTopicname(item.name)}} className={classes.menuItem}>
           {item.name}
          </MenuItem>
        ))}
-     <TableContainer component={Paper} aria-label="customized table">
+     <TableContainer  component={Paper} aria-label="customized table">
       <Table  className={classes.table}>
         <TableHead>
           <StyledTableRow>
@@ -177,7 +166,7 @@ const Topics = () => {
            
           </StyledTableRow>
         </TableHead>
-        <TableBody border="none">
+        <TableBody>
           {topics!==null && topics.map((topic) => {
             return(
             <StyledTableRow 

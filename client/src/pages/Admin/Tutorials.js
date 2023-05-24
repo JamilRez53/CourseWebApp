@@ -20,7 +20,9 @@ import axios from 'axios';
 import { MenuItem } from '@material-ui/core';
 const useStyles = makeStyles((theme) => ({
   table: {
-    minWidth: 700,
+    width: 1000,
+    marginLeft:"250px",
+    marginTop:'20px',
   },
   searchContainer: {
     display: 'flex',
@@ -57,7 +59,7 @@ const Tutorials = () => {
       color: theme.palette.common.white,
     },
     body: {
-      fontSize: 14,
+      fontSize: 16,
      
     },
   }))(TableCell);
@@ -130,7 +132,7 @@ const Tutorials = () => {
     <>
     
     <Navbar/>
-     <Button sx={{marginTop: 2, marginBottom:2 ,marginLeft:'730px'}} onClick={setShow}>Add Tutorials</Button>
+     <Button sx={{marginTop: 2, marginBottom:2 ,marginLeft:'710px'}} onClick={setShow}>Add Tutorials</Button>
 
      <div className={classes.searchContainer}>
     

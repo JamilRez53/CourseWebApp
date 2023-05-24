@@ -22,7 +22,9 @@ import { MenuItem } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
     table: {
-      minWidth: 700,
+      width: 1000,
+      marginLeft:"250px",
+      marginTop:'20px',
     },
     searchContainer: {
       display: 'flex',
@@ -59,7 +61,7 @@ const Questions = () => {
       color: theme.palette.common.white,
     },
     body: {
-      fontSize: 14,
+      fontSize: 16,
      
     },
   }))(TableCell);
@@ -139,7 +141,7 @@ const Questions = () => {
     <>
     
     <Navbar/>
-     <Button sx={{marginTop: 2, marginBottom:2 ,marginLeft:'730px'}} onClick={setShow}>Add Questions</Button>
+     <Button sx={{marginTop: 2, marginBottom:2 ,marginLeft:'710px'}} onClick={setShow}>Add Questions</Button>
 
      <div className={classes.searchContainer}>
     
@@ -170,6 +172,7 @@ const Questions = () => {
         <TableHead>
           <StyledTableRow>
             <StyledTableCell >Question</StyledTableCell>
+            <StyledTableCell>Options</StyledTableCell>
             <StyledTableCell>Answer</StyledTableCell>
             <StyledTableCell >Actions</StyledTableCell>
            
@@ -182,6 +185,9 @@ const Questions = () => {
               key={question._id} >
               <StyledTableCell  component="th" scope="row">
                 {question.name}
+              </StyledTableCell>
+              <StyledTableCell  component="th" scope="row">
+                {question.options}
               </StyledTableCell>
               <StyledTableCell  component="th" scope="row">
                 {question.description}

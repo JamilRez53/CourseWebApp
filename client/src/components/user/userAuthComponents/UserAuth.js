@@ -45,26 +45,26 @@ const UserAuth = () => {
       }
     }
 
-const login = useGoogleLogin({
-  onSuccess: async respose => {
-      try {
-          const res = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
-              headers: {
-                  "Authorization": `Bearer ${respose.access_token}`
-              }
-          })
-          console.log(res.data)
-          if(res.status==="ok"){
-            window.location.href="./User"
-          }
+// const login = useGoogleLogin({
+//   onSuccess: async respose => {
+//       try {
+//           const res = await axios.get("https://www.googleapis.com/oauth2/v3/userinfo", {
+//               headers: {
+//                   "Authorization": `Bearer ${respose.access_token}`
+//               }
+//           })
+//           console.log(res.data)
+//           if(res.status==="ok"){
+//             window.location.href="./User"
+//           }
 
-      } catch (err) {
-          console.log(err)
+//       } catch (err) {
+//           console.log(err)
 
-      }
+//       }
 
-  }
-});
+//   }
+// });
   return (
     <div className={styles.container}>
       <h1 className={styles.heading}>Log in Form</h1>
@@ -88,10 +88,7 @@ const login = useGoogleLogin({
           />
           <button onClick={handleInputs} className={styles.btn}>Log In</button>
 					<p className={styles.text}>or</p>
-          <button onClick={login}>
-                    <i class="fa-brands fa-google"></i>
-                    Continue with google
-                </button> 
+        
            {/* <GoogleLogin
                     onSuccess={credentialResponse => {
                     console.log(credentialResponse.credential);

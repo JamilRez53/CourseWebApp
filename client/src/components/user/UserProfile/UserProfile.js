@@ -74,9 +74,9 @@ const UserProfile = () => {
            setUser(data.data);
            });
     }
-    const Fname = user.fname.toUpperCase();
-    const Lname = user.lname.toUpperCase();
-    const Email = user.email.toUpperCase();
+    const Fname = user.fname;
+    const Lname = user.lname;
+    const Email = user.email;
     useEffect(()=>{
         fetchUser()
     },[])
