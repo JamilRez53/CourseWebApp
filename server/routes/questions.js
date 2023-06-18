@@ -40,12 +40,12 @@ router.post("/addQuestions",async(req,res)=>{
   
 })
 router.post("/updateQuestion/:id",async(req,res)=>{
-  const optionarray=[]
-  const optionfield = req.body.options;
-  optionarray.push(optionfield)
+  // const optionarray=[]
+  // const optionfield = req.body.options;
+  // optionarray.push(optionfield)
 const updateQuestion = ({
   name: req.body.name,
-  options: optionarray,
+  options: req.body.options,
   description: req.body.description,
 });
 //save Question and response

@@ -11,6 +11,8 @@ const adminInfo = require("./routes/adminInfo");
 const topicInfo = require("./routes/topics");
 const questionInfo = require("./routes/questions");
 const tutorialInfo = require("./routes/tutorials");
+const resultInfo = require("./routes/result");
+const userEdit = require("./routes/userEdit");
 const auth = require("./middleware/auth")
 const cookieSession = require("cookie-session");
 const cors=require("cors");
@@ -18,6 +20,7 @@ const path = require("path");
 const passport = require("passport");
 const bodyParser = require('body-parser');
 const passportStrategy = require("./passport");
+const controller = require("./routes/controller");
 dotenv.config();
 mongoose.connect(
     process.env.MONGO_URL,
@@ -50,6 +53,9 @@ mongoose.connect(
   app.use("/topics/",topicInfo);
   app.use("/questions/",questionInfo);
   app.use("/tutorials/",tutorialInfo);
+  app.use("/result/",resultInfo);
+  app.use("/userEdit/",userEdit);
+  app.use("/controller/",controller);
   app.use("/public", express.static(path.join(__dirname, "public")));
   // app.get("/secret/",auth,(req,res)=>{
   //   res.sender("Secret");

@@ -34,7 +34,7 @@ router.post("/login", async (req, res) => {
   
     const admin = await Admin.findOne({ email });
     if (!admin) {
-      return res.json({ error: "Admin Not found" });
+     return res.status(404).json("Admin Not found");
     }
       if (await bcrypt.compare(password, admin.password)) {
         const token = jwt.sign({ email: admin.email }, JWT_SECRET, {
@@ -47,7 +47,11 @@ router.post("/login", async (req, res) => {
           return res.json({ error: "error" });
         }
       }
-      res.json({ status: "error", error: "InvAlid Password" });
+      if( password!== admin.password){
+        return res.status(404).json("InvAlid Password");
+      }
+      
+      //alert("Invalid Password")
       res.status(200).json(admin)
     
     } catch (err) {

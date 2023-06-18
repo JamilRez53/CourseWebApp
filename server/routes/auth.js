@@ -34,7 +34,7 @@ router.post("/register",async(req,res)=>{
 
   const user = await User.findOne({ email });
   if (!user) {
-    return res.json({ error: "User Not found" });
+    return res.status(404).json("User Not found");
   }
     if (await bcrypt.compare(password, user.password)) {
       const token = jwt.sign({ email: user.email }, JWT_SECRET, {
@@ -47,7 +47,7 @@ router.post("/register",async(req,res)=>{
         return res.json({ error: "error" });
       }
     }
-    res.json({ status: "error", error: "InvAlid Password" });
+    if(password!==user.password) return res.status(404).json("InvAlid Password" );
     res.status(200).json(user)
   
   } catch (err) {

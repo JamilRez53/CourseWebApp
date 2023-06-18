@@ -11,11 +11,19 @@ const TopicSchema = new mongoose.Schema({
       type: String,
       require: true,
     },
-    slug: {
-      type: String,
-      unique: true,
-      index: true,
-      lowercase: true
+  //   slug: {
+  //     type: String,
+  //     unique: true,
+  //     index: true,
+  //     lowercase: true
+  // },
+  day:{
+    type:String,
+    require: true
+  },
+  lesson:{
+    type:String,
+    require: true
   },
     // descs:{
     //  type: String,
