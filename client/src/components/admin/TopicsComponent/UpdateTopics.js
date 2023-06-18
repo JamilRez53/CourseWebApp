@@ -4,22 +4,23 @@ import { useParams,useNavigate, Link } from 'react-router-dom'
 import axios from 'axios';
 import "./UpdateTopics.css";
 import JoditEditor from 'jodit-react'
-import Reactquill from 'react-quill'
+import Reactquill,{Quill} from 'react-quill';
+import ImageResize from 'quill-image-resize-module-react';
 const UpdateTopics = () => {
   const editor = useRef(null);
      const {id} =useParams();
-   // const navigate = useNavigate();
-    const[inputdata,setinputData] = useState({name:'',heading:''})
+     const navigate = useNavigate();
+    const[inputdata,setinputData] = useState({name:'',heading:'',day:'',lesson:''})
     const[description,setDescription] = useState('')
     // const[description,setDescription] = useState('')
-    const{ name, heading } = inputdata;
+    const{ name, heading,day,lesson } = inputdata;
     useEffect(() => {
       getTopics();
     }, []);
     const getTopics = async ()=>{
      await axios.get(`http://localhost:5000/topics/getSingleTopics/${id}`).then((res)=>{
-      const { name,heading, description } = res.data;
-     setinputData({...inputdata,name,heading});
+      const { name,heading, description,day,lesson } = res.data;
+     setinputData({...inputdata,name,heading,day,lesson});
      setDescription(description);
      console.log(setinputData(res.data))
     })
@@ -30,25 +31,16 @@ const UpdateTopics = () => {
       console.log(e);
     e.preventDefault();
         try {
-        await axios.put(`http://localhost:5000/topics/updateTopics/${id}`, {name,heading,description})
-        // .then((res)=>{
-        //   console.log(res.data);
-        //   setinputData(res.data);
-        //   console.log(setinputData(res.data))
-        //   //window.location.href="/topics"
-        // })
+        await axios.put(`http://localhost:5000/topics/updateTopics/${id}`, {name,heading,description,day,lesson})
         .then((response) => {
         console.log(response);
-        const { name, heading,description } = response.data;
-        // empty state
-        setinputData({ ...inputdata, name,description,heading });
-        
-
-        // show sucess alert
-       // alert(`${name} blog post is updated`);
-      });
+        const { name, heading,description,day,lesson } = response.data;
+        setinputData({ ...inputdata, name,description,heading,day,lesson });
+      }).then(
+        navigate("/topics")
+      );
        //let resJson = await res.json();
-          // window.location.href="./Topics"
+         
           // e.target.reset();
         } catch (error) {
             console.log(error);
@@ -71,6 +63,7 @@ const UpdateTopics = () => {
       [fieldName]: event.target.value
   })
   };
+  Quill.register('modules/imageResize', ImageResize);
   const  modules  = {
     toolbar: [
         [{ font: [] }],
@@ -84,12 +77,16 @@ const UpdateTopics = () => {
         ["link", "image", "video"],
         ["clean"],
     ],
+    imageResize: {
+      parchment: Quill.import('parchment'),
+      modules: ['Resize', 'DisplaySize']
+   },
 };
   return (
     <>
     
     
-        <form className='topic-container' onSubmit={UpdateTopic}>
+        <form className='topics-container' onSubmit={UpdateTopic}>
         <h1>UpdateTopic</h1>  
     <div className="mb-3">
             <label>Name</label>
@@ -98,7 +95,7 @@ const UpdateTopics = () => {
               className="form-control"
               placeholder="Name"
               value={name}
-              onChange={(event) => handleContent(event, 'name')}
+              onChange={(event) => handleChange(event, 'name')}
             />
              {/* <JoditEditor
           ref={editor}
@@ -141,7 +138,27 @@ const UpdateTopics = () => {
           value={description}
           onChange={handleContent}
           />
-
+          <div className="mb-3">
+            <label>Day</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Day"
+              value={day}
+              onChange={(event) => handleChange(event, 'day')}
+            />
+          </div>
+          <div className="mb-3">
+            <label>Lesson</label>
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Lesson"
+              value={lesson}
+              onChange={(event) => handleChange(event, 'lesson')}
+            />
+          </div>
+          
           <div className="d-grid">
             <button component={Link} to="/topics" type="submit" className="btn btn-primary">
               Submit

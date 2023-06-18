@@ -55,20 +55,20 @@ const Tutorials = () => {
   const [isEditModalOpen,setEditModalOpen] = useState(false);
   const StyledTableCell = withStyles((theme) => ({
     head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+      // backgroundColor: theme.palette.common.black,
+      // color: theme.palette.common.white,
     },
     body: {
-      fontSize: 16,
+     // fontSize: 16,
      
     },
   }))(TableCell);
   
   const StyledTableRow = withStyles((theme) => ({
     root: {
-      "&:nth-of-type(odd)": {
-        backgroundColor: theme.palette.action.hover,
-      },
+      // "&:nth-of-type(odd)": {
+      //   backgroundColor: theme.palette.action.hover,
+      // },
       
     },
   }))(TableRow);
@@ -162,7 +162,7 @@ const Tutorials = () => {
       <Table  className={classes.table}>
         <TableHead>
           <StyledTableRow>
-            <StyledTableCell >Vide Title</StyledTableCell>
+            <StyledTableCell >Video Title</StyledTableCell>
             <StyledTableCell >Video Heading</StyledTableCell>
             <StyledTableCell>Video</StyledTableCell>
             <StyledTableCell >Actions</StyledTableCell>

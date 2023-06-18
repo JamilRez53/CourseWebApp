@@ -12,14 +12,16 @@ import { Container } from '@mui/material';
 import Sidebar from './Sidebar';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { useNavigate } from 'react-router-dom';
 const useStyles = makeStyles((theme) => ({
   appBar: {
     zIndex: theme.zIndex.drawer + 1,
-    marginBottom: '20px'
+    marginBottom: '20px',
+    marginRight:'80px'
   },
   toolbar:{
     background:"white",
-    color:"#007bff"
+    color:"#007bff",
   }
 }));
 export default function ButtonAppBar() {
@@ -55,7 +57,7 @@ const handleClick = (event) => {
 const handleClose = () => {
   setAnchorEl(null);
 };
-  
+  const navigate=useNavigate();
   const fetchData = async() => {
     await fetch("http://localhost:5000/adminInfo/adminData",{
        method:"POST",
@@ -75,7 +77,8 @@ const handleClose = () => {
       if(data.data==="token expired"){
        alert("Token expired login again");
        window.localStorage.clear();
-       window.location.href="./admin";
+      // window.location.href="./admin";
+      navigate("/admin");
       }
       });
    
@@ -91,7 +94,7 @@ const logout =() =>{
   
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar position="static"  className={isScrolled? classes.appBar : ''}>
+      <AppBar sx={{marginRight:"5px",marginBottom:"30px" }}  className={isScrolled? classes.appBar : ''}>
         <Toolbar className={classes.toolbar}>
           <IconButton
             size="large"

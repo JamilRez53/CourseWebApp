@@ -15,9 +15,10 @@ import Paper from "@material-ui/core/Paper";
 import ReactPaginate from 'react-paginate';
 import axios from 'axios';
 import { MenuItem } from '@material-ui/core';
-
-
 const useStyles = makeStyles((theme) => ({
+  tableContainer: {
+    marginBottom: theme.spacing(2),
+  },
     table: {
       width: 1000,
       marginLeft:"250px",
@@ -53,9 +54,10 @@ const Topics = () => {
   const [isModalOpen,setModalOpen]=useState(false);
   const [isEditModalOpen,setEditModalOpen] = useState(false);
   const StyledTableCell = withStyles((theme) => ({
+    
     head: {
-      backgroundColor: theme.palette.common.black,
-      color: theme.palette.common.white,
+      // backgroundColor: theme.palette.common.black,
+      // color: theme.palette.common.white,
     },
     body: {
       fontSize: 16,
@@ -64,12 +66,12 @@ const Topics = () => {
   }))(TableCell);
   
   const StyledTableRow = withStyles((theme) => ({
-    root: {
-      "&:nth-of-type(odd)": {
-        backgroundColor: theme.palette.action.hover,
-      },
+    // root: {
+    //   "&:nth-of-type(odd)": {
+    //     backgroundColor: theme.palette.action.hover,
+    //   },
       
-    },
+    // },
   }))(TableRow);
   const setShow  = ()=>{
     setModalOpen(true);
@@ -129,7 +131,7 @@ const Topics = () => {
     <>
     
     <Navbar/>
-     <Button sx={{marginLeft:"670px"}}  component={Link} to={"/addTopics"}>Add Topics</Button>
+     <Button sx={{marginLeft:"670px",marginTop:"80px"}}  component={Link} to={"/addTopics"}>Add Topics</Button>
 
      <div className={classes.searchContainer}>
     
@@ -156,12 +158,13 @@ const Topics = () => {
           {item.name}
          </MenuItem>
        ))}
-     <TableContainer  component={Paper} aria-label="customized table">
+     <TableContainer className={classes.tableContainer} component={Paper} aria-label="customized table">
       <Table  className={classes.table}>
         <TableHead>
           <StyledTableRow>
             <StyledTableCell >Name</StyledTableCell>
-            <StyledTableCell>Heading</StyledTableCell>
+            <StyledTableCell>Day</StyledTableCell>
+            <StyledTableCell>Lesson</StyledTableCell>
             <StyledTableCell >Actions</StyledTableCell>
            
           </StyledTableRow>
@@ -175,7 +178,10 @@ const Topics = () => {
                 {topic.name}
               </StyledTableCell>
               <StyledTableCell  component="th" scope="row">
-                {topic.heading}
+                {topic.day}
+              </StyledTableCell>
+              <StyledTableCell  component="th" scope="row">
+                {topic.lesson}
               </StyledTableCell>
               <StyledTableCell  >
                 <IconButton arial-label="edit" component={Link} to={`/viewTopics/${topic._id}`}>
@@ -194,7 +200,9 @@ const Topics = () => {
      );
      })}
         </TableBody>
+        
       </Table>
+     
     </TableContainer>
     <ReactPaginate
         breakLabel="..."
@@ -205,7 +213,7 @@ const Topics = () => {
         previousLabel="< previous"
         renderOnZeroPageCount={null}
         marginPagesDisplayed={2}
-            containerClassName="pagination justify-content-center"
+        containerClassName="pagination justify-content-center"
             pageClassName="page-item"
             pageLinkClassName="page-link"
             previousClassName="page-item"
@@ -213,7 +221,6 @@ const Topics = () => {
             nextClassName="page-item"
             nextLinkClassName="page-link"
             activeClassName="active"
-            
       />
 
 </>

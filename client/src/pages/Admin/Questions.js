@@ -158,7 +158,7 @@ const Questions = () => {
         
        
      </div>
-     {questions!==null && questions.filter(item=>{
+     {/* {questions!==null && questions.filter(item=>{
           const searchTerm = questionname.toLowerCase();
           const full_question = item.name.toLowerCase();
           return searchTerm && full_question.startsWith(searchTerm) && full_question!==searchTerm;
@@ -166,7 +166,7 @@ const Questions = () => {
          <MenuItem key={item._id} onClick={()=>{setQuestionname(item.name)}} className={classes.menuItem}>
           {item.name}
          </MenuItem>
-       ))}
+       ))} */}
      <TableContainer component={Paper} aria-label="customized table">
       <Table  className={classes.table}>
         <TableHead>

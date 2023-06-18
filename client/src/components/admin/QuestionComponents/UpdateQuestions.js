@@ -5,8 +5,8 @@ import axios from 'axios';
 const UpdateQuestions = () => {
     const navigate = useNavigate();
     const {id}=useParams();
-    const[inputdata,setinputData] = useState({name:'',description:''})
-    const{ name, description } = inputdata;
+    const[inputdata,setinputData] = useState({name:'',options:[],description:''})
+    const{ name, options ,description } = inputdata;
     useEffect(() => {
       getQuestion();
     }, []);
@@ -16,7 +16,9 @@ const UpdateQuestions = () => {
     }
     const UpdateQuestion = async(e) =>{
       e.preventDefault()
-     await axios.post(`http://localhost:5000/questions/updateQuestion/${id}`,inputdata).then(res=>{
+     await axios.post(`http://localhost:5000/questions/updateQuestion/${id}`,inputdata).then((res)=>{
+      
+     }).then(res=>{
       navigate('/questions')
      })
      alert("Question Updated Successfully!!");
@@ -38,6 +40,17 @@ const UpdateQuestions = () => {
                   style={{height:"150px", width :"300px" }}
                   value={name}
                   onChange={(e)=>setinputData({...inputdata,name:e.target.value})}
+                />
+              </div>
+              <div className="mb-3">
+                <label>Question</label>
+                <textarea
+                  type="text"
+                  className="form-control"
+                  placeholder="Options"
+                  style={{height:"150px", width :"300px" }}
+                  value={options}
+                  onChange={(e)=>setinputData({...inputdata,options:e.target.value})}
                 />
               </div>
               <div className="mb-3">

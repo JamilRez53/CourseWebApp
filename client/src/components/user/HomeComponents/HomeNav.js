@@ -1,73 +1,56 @@
-import React ,{ useState,useEffect } from "react"
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
-import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
-import { Container } from '@mui/material';
-const useStyles = makeStyles((theme) => ({
-  appBar: {
-    zIndex: theme.zIndex.drawer + 1,
-    marginBottom: '20px'
+import React, { useRef } from "react";
+//import { Container } from "reactstrap";
+import "./header.css";
+import LocalLibraryIcon from '@mui/icons-material/LocalLibrary';
+import { Button } from "@mui/material";
+import {Typography} from "@mui/material";
+const navLinks = [
+  {
+    display: "Login as Instructor",
+    url: "/adminlogin",
   },
-  toolbar:{
-    background:"white",
-    color:"#007bff"
-  }
-}));
+  {
+    display: "Login as Student",
+    url: "/login",
+  },
+];
 
-const HomeNav = () => {
-    const classes=useStyles();
-    const[userData,setData]= useState("");
-    const[isScrolled,setScrolled] = useState(false)
-    const scrollNavbar = () =>{
-      if (window.pageYOffset > 0) {
-        setScrolled(true);
-      } else {
-        setScrolled(false);
-      }
-    };
-   useEffect(()=>{
-    scrollNavbar()
-   })
-  const UserLogin=()=>{
-    window.location.href="./login"
-  }
-  const AdminLogin = () =>{
-    window.location.href="./adminlogin"
-  }
+const Header = () => {
+  const menuRef = useRef();
+
+  const menuToggle = () => menuRef.current.classList.toggle("active__menu");
+
   return (
-    <div>
-    <Box sx={{ flexGrow: 1 }}>
-  <AppBar position="fixed" className={isScrolled? classes.appBar : ''}>
-    <Toolbar className={classes.toolbar}>
-      <Typography variant="h6" component="div" sx={{ flexGrow: 1 , marginLeft:"30px" }}>
-       CourseWebApp
-      </Typography>
-      {
-      userData!=="null" &&(
-        <>
-         <Container sx={{marginLeft:"800px" , display:"flex"}} >
-        {/* <Typography  variant="h6" component="div" sx={{ flexGrow: 1 ,marginLeft:'1000px' }}>{userData.fname}</Typography> */}
-       
-        <Button onClick={AdminLogin}>
-         Log In as Instructor
-        </Button>
-        <Button sx={{marginLeft:"70px"}} onClick={UserLogin}>
-            Login as Student
-        </Button>
-      </Container>
-     
-        </>
-     
-      )}
-    </Toolbar>
-  </AppBar>
- 
-</Box>
-</div>
-  )
-}
+    <header className="header">
+      <div>
+        <div className="navigation d-flex align-items-center justify-content-between">
+          <div className="logo">
+            <Typography variant="h4" sx={{color:"#1eb2a6"}}>
+              <LocalLibraryIcon sx={{color:"#1eb2a6"}}></LocalLibraryIcon> Learners.
+            </Typography>
+          </div>
 
-export default HomeNav
+          <div className="nav d-flex align-items-center gap-5">
+            <div className="nav__menu" ref={menuRef} onClick={menuToggle}>
+              <ul className="nav__list">
+                {navLinks.map((item, index) => (
+                  <li key={index} className="nav__item">
+                   <Typography variant="h4" sx={{color:"#1eb2a6"}}><a href={item.url}>{item.display}</a></Typography> 
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <div className="mobile__menu">
+            <span>
+              <i class="ri-menu-line" onClick={menuToggle}></i>
+            </span>
+          </div>
+        </div>
+      </div>
+    </header>
+  );
+};
+
+export default Header;

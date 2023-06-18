@@ -17,7 +17,6 @@ const TutorialDetail = () => {
   },[])
   return (
     <>
-    <Navbar/>
     { tutorial && (
         <div className='tutorial-container'>
             

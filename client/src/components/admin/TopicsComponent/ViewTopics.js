@@ -24,10 +24,15 @@ const ViewTopics = () => {
     <>
     <Navbar/>
     { topic && (
-        <div className='topic-container'>
+        <div className='topics-container'>
              <Typography  variant='h3' component='h2' sx={{marginBottom:'20px',backgroundColor:'#adb5bd',opacity:undefined}}> Topic Name: </Typography>
             <Typography sx={{marginBottom:'20px',fontSize:'25px'}}>{topic.name}</Typography>
+            <Typography  variant='h3' component='h2' sx={{marginBottom:'20px',backgroundColor:'#adb5bd',opacity:undefined}}> Day: </Typography>
+            <Typography sx={{marginBottom:'20px',fontSize:'25px'}}>{topic.day}</Typography>
+            <Typography  variant='h3' component='h2' sx={{marginBottom:'20px',backgroundColor:'#adb5bd',opacity:undefined}}> Lesson: </Typography>
+            <Typography  sx={{marginBottom:'20px',fontSize:'25px'}}>{topic.lesson}</Typography>
             <Typography variant='h3' sx={{marginBottom:'20px',backgroundColor:'#adb5bd',opacity:undefined}}>Description of Inner Subtopic:</Typography>
+            
             <ReactQuill theme="snow"  modules={{ toolbar: [] }} value={topic.description} readOnly={true} />
         </div>
 

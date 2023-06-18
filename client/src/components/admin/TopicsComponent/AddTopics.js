@@ -2,13 +2,19 @@ import React,{useState,useRef} from 'react'
 import JoditEditor from 'jodit-react';
 import  "./Jodit.css";
 import "./AddTopics.css"
-import ReactQuill from 'react-quill';
+import ReactQuill,{Quill} from 'react-quill';
 import axios from 'axios';
+import ImageResize from 'quill-image-resize-module-react';
 const AddTopics = () => {
+  
   const editor = useRef(null);
     const[name,setname] = useState('');
     const[heading,setHeading] = useState('');
     const[description,setDescription] = useState('');
+    // const[difficulty,setDifficulty] = useState('');
+    const[lesson,setLesson] = useState('');
+    const[day,setDay] = useState('');
+   // const[duration,setDuration] = useState('');
     const[message,setMessage] = useState("");
     const handleContent = (event) => {
       console.log(event);
@@ -18,7 +24,7 @@ const AddTopics = () => {
         console.log(e);
     e.preventDefault();
         try {
-            let res = await axios.post("http://localhost:5000/topics/addTopics",{name,heading,description},{
+            let res = await axios.post("http://localhost:5000/topics/addTopics",{name,heading,description,day,lesson},{
         method:"POST",
         crossDomain:true,
         headers:{
@@ -29,30 +35,41 @@ const AddTopics = () => {
         body:JSON.stringify({
             name:name,
             heading:heading,
-            description:description
+            description:description,
+            day:day,
+            lesson:lesson
         }),
      }).then((data) => {
        console.log(data, "TopicAdded");
        setname("");
        setDescription("");
        setHeading("");
+       setDay("");
+       setLesson("");
          setMessage("Topic added successfully");
        });
        //let resJson = await res.json();
-       //   window.location.href="./Topics"
+          
           e.target.reset();
+          window.location.href="./Topics"
+         
         } catch (error) {
             console.log(error);
         }
         e.target.reset();
     }
-    const contentFieldChanaged = (data) => {
+  //   const contentFieldChanaged = (data) => {
 
-      setDescription({ ...description, 'content': data })
+  //     setDescription({ ...description, 'content': data })
 
 
-  }
+  // }
+  Quill.register('modules/imageResize', ImageResize);
   const  modules  = {
+    imageResize: {
+      parchment: Quill.import('parchment'),
+      modules: ['Resize', 'DisplaySize']
+   },
     toolbar: [
         [{ font: [] }],
         [{ header: [1, 2, 3, 4, 5, 6, false] }],
@@ -70,7 +87,7 @@ const AddTopics = () => {
   return (
     <>
     <h1>Add Topic</h1>
-    <form className="topic-container" onSubmit={SaveTopic}>
+    <form className="topic-container1" onSubmit={SaveTopic}>
 
     
     <div className="mb-3">
@@ -106,7 +123,25 @@ const AddTopics = () => {
           value={description}
           onChange={handleContent}
           />
-            
+           <div className="mb-3">
+            <label>Day</label>
+            <textarea
+              type="text"
+              className="form-control"
+              placeholder="Day"
+              onChange={(e)=>setDay(e.target.value)}
+            />
+          </div>
+
+            <div className="mb-3">
+            <label>Lesson</label>
+            <textarea
+              type="text"
+              className="form-control"
+              placeholder="Lesson"
+              onChange={(e)=>setLesson(e.target.value)}
+            />
+          </div>
 
           <div className="d-grid">
             <button type="submit" className="btn btn-primary">
