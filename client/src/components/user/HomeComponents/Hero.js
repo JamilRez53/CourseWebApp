@@ -12,13 +12,15 @@ const HeroSection = () => {
           <Col lg="6" md="6">
             <div className="hero__content">
               <Typography variant="h3" sx={{color:"#fe9e0d"}} className="mb-4 hero__title">
-                Anytime Anywhere <br /> Learn on your Suitable Schedule
+              Objectives fulfilled <br/> through this Course
               </Typography>
-              <Typography sx={{fontSize:"20px"}}className="mb-5">
-              
-              Here u will get all the basic knowledge on Security and Cryptographic contents along with other aspects such aspects <br/>
-            threats pertaining to cyberSecurity as well as several practical works .
-              </Typography>
+              <ul style={{marginLeft:"30px"}}>
+               <li><Typography sx={{fontSize:"20px"}}className="mb-5">Recognize the foundations of cybersecurity</Typography></li>
+               <li><Typography sx={{fontSize:"20px"}}className="mb-5">Recognize typical cyberthreats</Typography></li>
+               <li><Typography sx={{fontSize:"20px"}}className="mb-5">Examine the security of web applications.</Typography></li>
+               <li><Typography sx={{fontSize:"20px"}}className="mb-5">Use secure coding techniques</Typography></li>
+               <li><Typography sx={{fontSize:"20px"}}className="mb-5">Use reputable authentication and authorization procedures</Typography></li>
+              </ul>     
             </div>
             {/* <div className="search" style={{width:"400px"}}>
               <input type="text" placeholder="Search" />

@@ -6,13 +6,17 @@ import { Button } from "@mui/material";
 import {Typography} from "@mui/material";
 const navLinks = [
   {
-    display: "Login as Instructor",
-    url: "/adminlogin",
+    display: "Instructor Login",
+    url: "/instructorlogin",
   },
   {
-    display: "Login as Student",
+    display: "Student Login",
     url: "/login",
   },
+  {
+    display: "Admin Login",
+    url: "/adminlogin",
+  }
 ];
 
 const Header = () => {
@@ -26,7 +30,7 @@ const Header = () => {
         <div className="navigation d-flex align-items-center justify-content-between">
           <div className="logo">
             <Typography variant="h4" sx={{color:"#1eb2a6"}}>
-              <LocalLibraryIcon sx={{color:"#1eb2a6"}}></LocalLibraryIcon> Learners.
+              <LocalLibraryIcon sx={{color:"#1eb2a6"}}></LocalLibraryIcon> Learning Information Security for all
             </Typography>
           </div>
 

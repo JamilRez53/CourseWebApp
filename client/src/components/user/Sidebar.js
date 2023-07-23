@@ -9,9 +9,9 @@ import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
 import MailIcon from '@mui/icons-material/Mail';
-
+import DrawerComp from './Drawer';
 export default function TemporaryDrawer({state,setState,toggleDrawer}) {
-  
+  const [openDrawer, setOpenDrawer] = useState(false)
   const list = (anchor) => (
     <Box
       sx={{ width: anchor === 'top' || anchor === 'bottom' ? 'auto' : 250 }}
@@ -20,7 +20,7 @@ export default function TemporaryDrawer({state,setState,toggleDrawer}) {
       onKeyDown={toggleDrawer(anchor, false)}
     >
       <List>
-        {['Topics', 'Quiz','UserTutorials'].map((text, index) => (
+        {['UserTopics', 'Quiz','UserTutorials'].map((text, index) => (
           <ListItem key={text} disablePadding>
             <ListItemButton  href={`./${text.toLowerCase()}`}>
               <ListItemIcon>
@@ -47,6 +47,16 @@ export default function TemporaryDrawer({state,setState,toggleDrawer}) {
           >
             {list(anchor)}
           </Drawer>
+          {/* <IconButton
+            size="large"
+            edge="start"
+            color="inherit"
+            aria-label="menu"
+            sx={{ mr: 2 }}
+            onClick={toggleDrawer("left", true)}
+          >
+            <MenuIcon />
+          </IconButton> */}
         </React.Fragment>
       ))}
       {

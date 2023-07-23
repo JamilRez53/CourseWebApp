@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import { Button, Typography } from '@mui/material';
-import {QuizData} from "../../../Database/Data"
+import {QuizData} from "../../../Database/Data2"
 import {Navigate} from 'react-router-dom'
 import "./QuizMain.css";
 import QuizResult from "./QuizResult";
@@ -11,7 +11,7 @@ const Quiz3 = () => {
   const[score,setScore] = useState(0);
    const[clickedOption,setClickedOption] = useState(0);  
    const[showResult,setShowResult] = useState(false);
-  const [week,setWeek] = useState("week2");
+  const [week,setWeek] = useState("week3");
   const fetchUser = async() =>{
       try {
           await fetch("http://localhost:5000/userDetails/userData",{

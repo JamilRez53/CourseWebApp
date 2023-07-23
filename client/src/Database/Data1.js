@@ -1,43 +1,42 @@
 export const QuizData = [
     {
-        question: "What is the motivation of a white hat attacker?",
-        options:[ "discovering weaknesses of networks and systems to improve the security level of these systems", "taking advantage of any vulnerability for illegal personal gain", "studying operating systems of various platforms to develop a new system", "fine tuning network devices to improve their performance and efficiency"],
-        answer: 1
+        question: "Release of message contents to any person or process not possessing the appropriate cryptographic key is called _________.",
+        options:[ "a. Traffic Analysis", "b. Disclosure", "c. Masquerade", "d. Non-repudiation"],
+        answer: 2
     },
     {
-        question: "What is the methods that can be used to ensure confidentiality of information",
+        question: "What makes MAC different from a hash function?",
         options:[
-        "version control",
-        "two factor authentication",
-        "file permission settings",
-        "backup"],
+        "a. Hash Function",
+        "b. Message",
+        "c. Secret Key",
+        "d. Encryption algorithm"],
+        answer: 3
+    },
+    {
+        question: "Message authentication code is also known as ________________",
+        options: [
+        "a. key code",
+        "b. keyed hash function",
+        "c. hash code",
+        "d. message key hash function"],
         answer: 2
     },
     {
-        question: "Which method is used to check the integrity of data?",
-        options: ["authentication",
-        "checksum",
-            "encryption",
-            
-            "backup"],
-        answer: 2
+        question:  " A stream cipher is a type of algorithm that encrypts a group of bits collectively as blocks.",
+        options: [
+        "a. false",
+        "b. true"],
+        answer:1
     },
     {
-        question:  "What is the component of the CIA triad?",
+        question:  "When a hash function is used to provide message authentication, the hash function value is referred to as ________",
         options: [
-        "scalability",
-        "access",
-        "intervention",
-        "confidentiality"],
-        answer:4
-    },
-    {
-        question:  "What is another name for confidentiality of information?",
-        options: [
-        "trustworthiness",
-        "accuracy",
-        "privacy",
-        "consistency"],
-        answer:3
+        "a. Message Digest",
+        "b. Authentication Score",
+        
+        "c. Authentication Digest",
+        "d. Hash Score"],
+        answer:1
     }
 ];

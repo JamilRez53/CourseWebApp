@@ -1,5 +1,5 @@
 import React ,{useState}from 'react'
-import Admin from "../../../assets/Admin.png"
+import Admin from "../../../assets/Instructor.jpeg"
 import SupervisorAccountIcon from '@mui/icons-material/SupervisorAccount';
 const UserAuth = () => {
     const[email,setEmail] = useState("");
@@ -28,7 +28,7 @@ const UserAuth = () => {
          if (data.status === "ok") {
             alert("login successful");
             window.localStorage.setItem("token", data.data);
-            window.localStorage.setItem("adminloggedIn", true);
+            window.localStorage.setItem("instructorloggedIn", true);
   
             window.location.href = "./topics";
           }
@@ -46,7 +46,7 @@ const UserAuth = () => {
        <div>
           <img src={Admin} style={{width:"200px", marginLeft:"60px"}}/>
         </div>
-        <h3> Admin Login</h3>
+        <h3> Instructor Login</h3>
         
         <div className="mb-3">
           <label>Email address</label>
@@ -75,7 +75,7 @@ const UserAuth = () => {
         </div>
         <div className="message">{message ? <p>{message}</p> : null}</div>
         <p className="forgot-password text-right">
-            Not registered <a href="/admin-signup">sign Up?</a>
+            Not registered <a href="/instructor-signup">sign Up?</a>
           </p>
       </form>
     </div>

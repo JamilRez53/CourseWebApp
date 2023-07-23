@@ -10,17 +10,17 @@ const UpdateTopics = () => {
   const editor = useRef(null);
      const {id} =useParams();
      const navigate = useNavigate();
-    const[inputdata,setinputData] = useState({name:'',heading:'',day:'',lesson:''})
+    const[inputdata,setinputData] = useState({name:'',week:'',heading:'',day:'',lesson:''})
     const[description,setDescription] = useState('')
     // const[description,setDescription] = useState('')
-    const{ name, heading,day,lesson } = inputdata;
+    const{ name,week,heading,day,lesson } = inputdata;
     useEffect(() => {
       getTopics();
     }, []);
     const getTopics = async ()=>{
      await axios.get(`http://localhost:5000/topics/getSingleTopics/${id}`).then((res)=>{
-      const { name,heading, description,day,lesson } = res.data;
-     setinputData({...inputdata,name,heading,day,lesson});
+      const { name,week,heading, description,day,lesson } = res.data;
+     setinputData({...inputdata,name,week,heading,day,lesson});
      setDescription(description);
      console.log(setinputData(res.data))
     })
@@ -31,16 +31,16 @@ const UpdateTopics = () => {
       console.log(e);
     e.preventDefault();
         try {
-        await axios.put(`http://localhost:5000/topics/updateTopics/${id}`, {name,heading,description,day,lesson})
+        await axios.put(`http://localhost:5000/topics/updateTopics/${id}`, {name,week,heading,description,day,lesson})
         .then((response) => {
         console.log(response);
-        const { name, heading,description,day,lesson } = response.data;
-        setinputData({ ...inputdata, name,description,heading,day,lesson });
-      }).then(
-        navigate("/topics")
-      );
+        const { name,week,heading,description,day,lesson } = response.data;
+        setinputData({ ...inputdata, name,week,description,heading,day,lesson });
+      });
+
        //let resJson = await res.json();
-         
+       alert("Topic Updated Successfully")
+       navigate("/topics")
           // e.target.reset();
         } catch (error) {
             console.log(error);
@@ -97,10 +97,16 @@ const UpdateTopics = () => {
               value={name}
               onChange={(event) => handleChange(event, 'name')}
             />
-             {/* <JoditEditor
-          ref={editor}
-          value={name}
-          onChange={newContent => setinputData({ ...inputdata, name: newContent })}/> */}
+            <div className="mb-3">
+            <label>Week</label>
+            <textarea
+              type="text"
+              className="form-control"
+              placeholder="Week"
+              value={week}
+              onChange={(event) => handleChange(event, 'week')}
+            />
+          </div>
           </div>
 
           <div className="mb-3">
@@ -113,24 +119,6 @@ const UpdateTopics = () => {
               onChange={(event) => handleChange(event, 'heading')}
             />
           </div>
-          {/* <div className="mb-3">
-            
-            <textarea
-              type="text"
-              className="form-control"
-              placeholder="Description"
-              value={description}
-              onChange={(event) => handleContent(event, 'description')}
-            />
-          </div> */}
-          {/* <div className="mb-3">
-          <label>Description</label>
-          <JoditEditor
-          ref={editor}
-          value={description}
-          onChange={newContent => setinputData({ ...inputdata, description: newContent })}
-          />
-          </div> */}
           
           <Reactquill
           theme='snow'

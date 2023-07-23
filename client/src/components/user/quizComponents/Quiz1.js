@@ -13,7 +13,7 @@ const Quiz1 = () => {
      const[showResult,setShowResult] = useState(false);
     const[quizData,setQuizData] = useState([]);
     const [week,setWeek] = useState("week1");
-    const[results,setResult] = useState([]);
+  //  const[results,setResult] = useState([]);
     const fetchUser = async() =>{
         try {
             await fetch("http://localhost:5000/userDetails/userData",{
@@ -92,6 +92,10 @@ const Quiz1 = () => {
  const obtainedScore = score*10;
  const totalScore = QuizData.length*10;
  const flag = ((totalScore*50/100)<obtainedScore)
+ const randomIndex = Math.floor(Math.random() * QuizData.length);
+ const Quiz = QuizData[randomIndex];
+
+
   return (
     // {result.map()}
     <>
@@ -112,10 +116,10 @@ const Quiz1 = () => {
     (    <>
           <div className='question'>
      <Typography id='question-number'>{currentQuestion+1}.</Typography>
-    {  <Typography>{QuizData[currentQuestion].question}</Typography>}
+    {  <Typography>{QuizData[randomIndex].question}</Typography>}
     </div>
     <div className='option-container'>
-     {QuizData[currentQuestion].options.map((option,index)=>{
+     {QuizData[randomIndex].options.map((option,index)=>{
         return(
             <button sx={{color:"black"}} key={index} className={`option-btn ${
                         clickedOption === index+1?"checked":null

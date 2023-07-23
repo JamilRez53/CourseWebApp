@@ -106,7 +106,7 @@ size="small"
      </Grid>
     </Grid>
     <div>
-    <Typography variant='h3' style={{marginLeft:"150px",maxWidth:"300px",padding:"1px",marginTop:"40px"}} >Week {currentPage.current}</Typography>
+    {/* <Typography variant='h3' style={{marginLeft:"150px",maxWidth:"300px",padding:"1px",marginTop:"40px"}} >Week {currentPage.current}</Typography> */}
     {tutorial!==null && tutorial.map((item)=>{
      return(
       
@@ -116,7 +116,7 @@ size="small"
            <Typography variant='h4' >
         {item.name}
        </Typography>
-       <Typography >{item.description}</Typography>
+       {/* <Typography >{item.description}</Typography> */}
            </div>
        
        {/* <button component={Link} to={`/viewDetails/${item._id}`}>View More</button> */}

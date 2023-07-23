@@ -6,7 +6,7 @@ import SendIcon from '@mui/icons-material/Send';
 const Footer = () => {
   return (
     <>
-      <section className='newletter'>
+      {/* <section className='newletter'>
         <div className='container flexSB'>
           <div className='left row'>
             <h1>A word of Advice</h1>
@@ -15,16 +15,16 @@ const Footer = () => {
           <div className='right row' style={{display:"flex"}}>
             <input type='text' placeholder='Enter email address' />
             {/* <i className='fa fa-paper-plane '></i> */}
-            <SendIcon/>
-          </div>
-        </div>
-      </section>
-      <footer>
+            {/* <SendIcon/> */}
+          {/* </div> */}
+        {/* </div> */}
+      {/* </section> */} 
+      <footer style={{background:"white",marginTop:"30px"}}>
         <div className='container padding'>
           <div className='box logo' style={{width:"250px"}}>
-            <h1>LCA</h1>
-            <span>E-Learning for CyberSecurity Practices</span>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+          <h1>Learning Information Security and Cryptography for All </h1>
+            <span>E-Learning platform for Information Security and Cryptographic Practices</span>
+            {/* <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> */}
 
             <i className='fab fa-facebook-f icon'></i>
             <i className='fab fa-twitter icon'></i>
@@ -90,7 +90,7 @@ const Footer = () => {
           </div> */}
         </div>
       </footer>
-      <div className='legal'>
+      <div className='legal' style={{background:"white"}}>
         <p>
           Copyright ©2022 All rights reserved | Powered by <Link to="https://www.cuet.ac.bd/dept/cse">CUET CSE</Link> 
         </p>

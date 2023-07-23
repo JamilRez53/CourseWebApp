@@ -107,7 +107,7 @@ const logout =() =>{
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Dashboard
+           Instructor Dashboard
           </Typography>
           {
           adminData!=="null" &&(

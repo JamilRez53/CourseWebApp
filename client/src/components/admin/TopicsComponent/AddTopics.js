@@ -9,6 +9,7 @@ const AddTopics = () => {
   
   const editor = useRef(null);
     const[name,setname] = useState('');
+    const[week,setWeek] = useState('');
     const[heading,setHeading] = useState('');
     const[description,setDescription] = useState('');
     // const[difficulty,setDifficulty] = useState('');
@@ -24,7 +25,7 @@ const AddTopics = () => {
         console.log(e);
     e.preventDefault();
         try {
-            let res = await axios.post("http://localhost:5000/topics/addTopics",{name,heading,description,day,lesson},{
+            let res = await axios.post("http://localhost:5000/topics/addTopics",{name,week,heading,description,day,lesson},{
         method:"POST",
         crossDomain:true,
         headers:{
@@ -34,6 +35,7 @@ const AddTopics = () => {
         },
         body:JSON.stringify({
             name:name,
+            week:week,
             heading:heading,
             description:description,
             day:day,
@@ -42,6 +44,7 @@ const AddTopics = () => {
      }).then((data) => {
        console.log(data, "TopicAdded");
        setname("");
+       setWeek("");
        setDescription("");
        setHeading("");
        setDay("");
@@ -51,6 +54,7 @@ const AddTopics = () => {
        //let resJson = await res.json();
           
           e.target.reset();
+          alert("Topic Added Successfully")
           window.location.href="./Topics"
          
         } catch (error) {
@@ -100,6 +104,15 @@ const AddTopics = () => {
             />
           </div>
           <div className="mb-3">
+            <label>Week</label>
+            <textarea
+              type="text"
+              className="form-control"
+              placeholder="Week"
+              onChange={(e)=>setWeek(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
             <label>Heading</label>
             <textarea
               type="text"
@@ -108,14 +121,7 @@ const AddTopics = () => {
               onChange={(e)=>setHeading(e.target.value)}
             />
           </div>
-
-            <label>Description</label>
-          {/* <JoditEditor 
-			ref={editor}
-			value={description.content}
-			onChange={(newContent) => contentFieldChanaged(newContent)}
-      className="toolbar-component"
-		/> */}
+          <label>Description</label>
           <ReactQuill
           theme='snow'
           className='ql-container'

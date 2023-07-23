@@ -29,9 +29,10 @@ const useStyles = makeStyles((theme) => ({
         alignItems: 'center',
         marginBottom: '20px',
         marginLeft: '600px',
-        marginTop:"40px"
+        marginTop:"150px",
       },
       searchInput: {
+        
         marginLeft:"600px",
         borderRadius: theme.shape.borderRadius,
       },

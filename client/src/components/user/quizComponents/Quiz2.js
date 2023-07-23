@@ -1,6 +1,6 @@
 import React, { useState,useEffect } from 'react'
 import { Button, Typography } from '@mui/material';
-import {QuizData} from "../../../Database/Data"
+import {QuizData} from "../../../Database/Data1"
 import {Navigate} from 'react-router-dom'
 import "./QuizMain.css";
 import QuizResult from "./QuizResult";

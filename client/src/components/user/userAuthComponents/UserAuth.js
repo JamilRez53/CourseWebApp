@@ -35,7 +35,7 @@ const UserAuth = () => {
             window.localStorage.setItem("token", data.data);
             window.localStorage.setItem("loggedIn", true);
   
-            window.location.href = "./userTopics";
+            window.location.href = "./userHome";
           }
          });
         
@@ -86,7 +86,7 @@ const UserAuth = () => {
             onChange={(e)=>setPassword(e.target.value)}
 
           />
-          <button onClick={handleInputs} className={styles.btn}>Log In</button>
+          <button onClick={handleInputs} className={styles.submit}>Log In</button>
 					<p className={styles.text}>or</p>
         
            {/* <GoogleLogin

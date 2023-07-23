@@ -1,7 +1,7 @@
 .App{
   width: 100vw;
     height: 100vh;
-    background-color: #f0f8ff;
+    background-color: #ffffff;
     /* display: flex; */
     align-items: center;
     flex-direction: column;
@@ -21,7 +21,7 @@
   .App{
     width: 100vw;
       height: 100vh;
-      background-color: #f0f8ff;
+      background-color: #ffffff;
       /* display: flex; */
       align-items: center;
       flex-direction: column;
@@ -33,7 +33,7 @@
   .App{
     width: 100vw;
       height: 100vh;
-      background-color: #f0f8ff;
+      background-color: #ffffff;
       /* display: flex; */
       align-items: center;
       flex-direction: column;
@@ -63,7 +63,4 @@
   to {
     transform: rotate(360deg);
   }
-}
-.jodit-status-bar {
-  visibility: collapse;
 }

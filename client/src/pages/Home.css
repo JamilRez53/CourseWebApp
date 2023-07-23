@@ -1,4 +1,4 @@
-nav {
+/* nav {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -13,7 +13,7 @@ nav {
     color: black;
     font-size: 1.1rem;
     font-weight: 600;
-  }
+  } */
   .primary-button {
     padding: 0.9rem 1.75rem;
     background-color: white;

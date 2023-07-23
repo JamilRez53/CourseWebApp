@@ -1,43 +1,42 @@
 export const QuizData = [
     {
-        question: "What is the motivation of a white hat attacker?",
-        options:[ "discovering weaknesses of networks and systems to improve the security level of these systems", "taking advantage of any vulnerability for illegal personal gain", "studying operating systems of various platforms to develop a new system", "fine tuning network devices to improve their performance and efficiency"],
-        answer: 1
+        question: "Which of the following is a mode of operation for the Block ciphers in cryptography?",
+        options:[ "a. Electronic Code Book (ECB)", "b. Cipher Block Chaining (CBC)", "Counter (CTR) mode", "All of the above"],
+        answer: 4
     },
     {
-        question: "What is the methods that can be used to ensure confidentiality of information",
+        question: "For which of the following should EBC (Electronic Code Book) process not be used for encryption?",
         options:[
-        "version control",
-        "two factor authentication",
-        "file permission settings",
-        "backup"],
-        answer: 2
+        "a. For large block sizes",
+        "b. For fixed block sizes",
+        "c.For small block sizes",
+        "d. none of the above"],
+        answer: 3
     },
     {
-        question: "Which method is used to check the integrity of data?",
-        options: ["authentication",
-        "checksum",
-            "encryption",
-            
-            "backup"],
-        answer: 2
-    },
-    {
-        question:  "What is the component of the CIA triad?",
+        question: "Data Encryption Standard (DES) is a __________.",
         options: [
-        "scalability",
-        "access",
-        "intervention",
-        "confidentiality"],
-        answer:4
+        "a. Stream Cipher",
+        "b. Bit Cipher",
+        "c. Block Cipher",
+        "d. Substitution Cipher"],
+        answer: 3
     },
     {
-        question:  "What is another name for confidentiality of information?",
+        question:  " A stream cipher is a type of algorithm that encrypts a group of bits collectively as blocks.",
         options: [
-        "trustworthiness",
-        "accuracy",
-        "privacy",
-        "consistency"],
-        answer:3
+        "a. false",
+        "b. true"],
+        answer:1
+    },
+    {
+        question:  "Which One Of The Following Statements About Block And Stream Ciphers Is Correct??",
+        options: [
+        "a. Stream ciphers commonly use Feistel networks",
+        "b. Most modern ciphers are block ciphers",
+        
+        "c. Block ciphers are faster than equivalent stream ciphers.",
+        "d. Block ciphers encrypt one byte at a time."],
+        answer:2
     }
 ];

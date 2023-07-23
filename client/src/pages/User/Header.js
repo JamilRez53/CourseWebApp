@@ -56,15 +56,11 @@ useEffect(()=>{
         <nav className='flexSB' style={{marginLeft:"150px"}}>
           <ul className={click ? "mobile-nav" : "flexSB "} onClick={() => setClick(false)}>
             
-            <li>
-              <Link to='/userTopics'><Typography variant="h5">Topics</Typography></Link>
+            <li style={{display:"flex"}}>
+              <Link to='/userHome'><Typography variant="h5">Topic Overview</Typography></Link>
+              <Link to='/userTutorials'><Typography sx={{marginLeft:"20px"}} variant="h5">Tutorials</Typography></Link>
             </li>
-            <li>
-              <Link to='/userTutorials'><Typography variant="h5">Tutorials</Typography></Link>
-            </li>
-            <li>
-              <Link to='/quizmain'><Typography variant="h5">Quiz</Typography></Link>
-            </li>
+           
           </ul>
           <div style={{display:"flex"}}>
           <Button style={{background:"#1eb2a6", display:"flex"}} component={Link} to={`/editUser/${userData._id}`}>

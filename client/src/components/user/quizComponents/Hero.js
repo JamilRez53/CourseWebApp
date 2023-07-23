@@ -9,8 +9,8 @@ const Hero = () => {
       <section className='hero-quiz'>
         <div className='container'>
           <div className='row'>
-            <Heading subtitle='WELCOME TO LCA' title='An E-learning for CyberSecurity practices' />
-            <Typography sx={{fontSize:"24px"}}>Test your acquired Knowledge by passing some simple quiz tests set for you.</Typography>
+            <Heading subtitle='LEARNING CRYPTOGRAPHY AND INFORMATION SECURITY' title='The Quiz portion for Cryptography Knowledge practice' />
+            {/* <Typography sx={{fontSize:"24px"}}>Test your acquired Knowledge by passing some simple quiz tests set for you.</Typography> */}
           </div>
         </div>
       </section>

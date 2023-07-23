@@ -7,8 +7,8 @@ const Head = () => {
       <section className='head'>
         <div className='container flexSB'>
           <div className='logo'>
-            <Typography variant="h5">LCA</Typography>
-            <Typography variant="h5">E-LEARNING PLATFORM FOR CYBERSECURITY MODULES</Typography>
+            <Typography variant="h5">LEARNING CRYPTOGRAPHY AND INFORMATION SECURITY FOR ALL.</Typography>
+            <Typography variant="h5">E-LEARNING PLATFORM FOR CRYPTOGRAPHIC AND SECURITY MODULES</Typography>
           </div>
 
           <div className='social'>

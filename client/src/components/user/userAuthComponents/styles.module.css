@@ -125,7 +125,7 @@
 .google_btn > span{
     margin-left: 10px;
 }
-button{
+.submit{
     background-color: black;
     padding:20px;
     border-radius: .5rem;
@@ -134,10 +134,10 @@ button{
     margin-bottom: 50px;
   }
   
-  button:hover{
+  .submit:hover{
     border:2px solid white;
   }
   
-  button i{
+  .submit i{
     margin-right: 10px;
   }  

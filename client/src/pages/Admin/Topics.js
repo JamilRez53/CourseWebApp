@@ -163,8 +163,8 @@ const Topics = () => {
         <TableHead>
           <StyledTableRow>
             <StyledTableCell >Name</StyledTableCell>
+            <StyledTableCell>Week</StyledTableCell>
             <StyledTableCell>Day</StyledTableCell>
-            <StyledTableCell>Lesson</StyledTableCell>
             <StyledTableCell >Actions</StyledTableCell>
            
           </StyledTableRow>
@@ -178,10 +178,10 @@ const Topics = () => {
                 {topic.name}
               </StyledTableCell>
               <StyledTableCell  component="th" scope="row">
-                {topic.day}
+                {topic.week}
               </StyledTableCell>
               <StyledTableCell  component="th" scope="row">
-                {topic.lesson}
+                {topic.day}
               </StyledTableCell>
               <StyledTableCell  >
                 <IconButton arial-label="edit" component={Link} to={`/viewTopics/${topic._id}`}>

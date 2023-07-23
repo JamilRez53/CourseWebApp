@@ -1,9 +1,10 @@
 import React from 'react'
 import { useState } from 'react'
-import Admin from "../../../assets/Admin-1.png"
+import Admin from "../../../assets/teacher.webp"
 const Signup = () => {
   
   const[email,setEmail] = useState("");
+  const[contact,setContact] = useState("");
   const[password,setPassword] = useState("");
   const[message,setMessage] = useState("");
   const [secretKey, setSecretKey] = useState("");
@@ -26,20 +27,23 @@ const Signup = () => {
             },
             body:JSON.stringify({
                 secretKey: secretKey,
+                contact: contact,
                 email:email,
                 password:password
             }),
          }).then((res) => res.json())
          .then((data) => {
            console.log(data, "AdminRegister");
+           window.location.href="./instructorlogin"
            });
            //let resJson = await res.json();
-           if (res.status === 200) {
+           if (res.status === "ok") {
             
              setEmail("");
              setPassword("");
-             setMessage("Admin created successfully");
-             window.location.href="./admin"
+             setContact("");
+             setMessage("Instructor created successfully");
+            
            } else {
              setMessage("Some error occured");
            }
@@ -62,7 +66,7 @@ const Signup = () => {
           <h3>Sign Up</h3>
 
           <div className="mb-3">
-            <label>First name</label>
+            <label>Secret Key</label>
             <input
                 type="text"
                 className="form-control"
@@ -78,6 +82,15 @@ const Signup = () => {
               className="form-control"
               placeholder="Enter email"
               onChange={(e)=>setEmail(e.target.value)}
+            />
+          </div>
+          <div className="mb-3">
+            <label>Contact No.</label>
+            <input
+              type="tel"
+              className="form-control"
+              placeholder="Enter Contact No."
+              onChange={(e)=>setContact(e.target.value)}
             />
           </div>
 
@@ -98,7 +111,7 @@ const Signup = () => {
           </div>
           <div className="message">{message ? <p>{message}</p> : null}</div>
           <p className="forgot-password text-right">
-            Already registered <a href="/admin">sign in?</a>
+            Already registered <a href="/instructorlogin">sign in?</a>
           </p>
         </form>
       </div>

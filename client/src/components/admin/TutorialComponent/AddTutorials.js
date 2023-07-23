@@ -3,18 +3,20 @@ import axios from 'axios';
 const AddTutorials = () => {
     const[name,setname] = useState("");
     const[description,setDescription] = useState("");
-    const[videos,setVideos] = useState([]);
+    const[video,setVideo] = useState("");
     const SaveTutorial = async(e) =>{
         console.log(e);
     e.preventDefault();
     let formdata = new FormData();
-    for (let key in videos) {
-      formdata.append("videos", videos[key]);
-    }
+   
 
     formdata.append("name", name);
-    formdata.append("description",description)
-     await axios.post("http://localhost:5000/tutorials/addTutorial", formdata)
+    formdata.append("description",description);
+    formdata.append("video",video)
+     await fetch("http://localhost:5000/tutorials/addTutorial",{
+      method:'POST',
+      body:formdata
+     })
       .then((success) => {
         alert("Submitted successfully");
       })
@@ -28,7 +30,7 @@ const AddTutorials = () => {
   return (
     <>
     <h1>Add Tutorials</h1>
-    <form onSubmit={SaveTutorial}>
+    <form onSubmit={SaveTutorial} encType='multipart/form-data'>
 
     
     <div className="mb-3">
@@ -54,13 +56,13 @@ const AddTutorials = () => {
           <label >Upload Videos</label>
           <input
             type="file"
-            name="videos"
-            id="videos"
+            name="video"
+            id="video"
             multiple
             className="form-control"
             accept=".mp4, .mkv"
             onChange={(e) => {
-              setVideos(e.target.files);
+              setVideo(e.target.files[0]);
             }}
           />
           <div className="d-grid">

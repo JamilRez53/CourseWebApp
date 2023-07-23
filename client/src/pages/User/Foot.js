@@ -21,9 +21,9 @@ const Foot = () => {
       <footer>
         <div className='container padding'>
           <div className='box logo' style={{width:"250px"}}>
-            <h1>LCA</h1>
-            <span>E-Learning for CyberSecurity Practices</span>
-            <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>
+            <h1>Learning Information Security and Cryptography for All </h1>
+            <span>E-Learning platform for Information Security and Cryptographic Practices</span>
+            {/* <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p> */}
 
             <i className='fab fa-facebook-f icon'></i>
             <i className='fab fa-twitter icon'></i>

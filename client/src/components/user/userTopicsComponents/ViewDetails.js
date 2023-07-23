@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import { Typography } from '@mui/material';
 import Navbar from '../Navbar';
+import Header from '../../../pages/User/Header';
 import "./ViewDetails.css"
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -23,19 +24,22 @@ useEffect(()=>{
 
 return (
   <>
-  <Navbar/>
+  <div className='background'>
+  <Header/>
   { topic && (
-      <div className='topic-container'>
+      <div className='topics-container' style={{background:"white"}}>
            
-          <Typography variant='h2' sx={{marginTop:'80px'}}>{topic.name}</Typography>
-          <Typography sx={{marginTop:'20px'}}>{topic.heading}</Typography>
-          <ReactQuill theme="snow"  modules={{ toolbar: [] }} value={topic.description} readOnly={true} />
+          <Typography variant='h2' sx={{marginLeft:"80px"}}>{topic.name}</Typography>
+          
+          <ReactQuill theme="snow" style={{marginLeft:"80px",marginBottom:"50px",marginRight:"50px"}}  modules={{ toolbar: [] }} value={topic.description} readOnly={true} />
       </div>
 
   )
 
 
   }
+  </div>
+  
   </>
   
 )

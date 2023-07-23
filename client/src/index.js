@@ -6,13 +6,10 @@ import { Provider } from 'react-redux';
 import {GoogleOAuthProvider} from '@react-oauth/google';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import reportWebVitals from './reportWebVitals';
-import store from './redux/Store'
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-       <Provider store={store}>
-            <App/>
-        </Provider> 
+      <App/>
     </React.StrictMode>
 );
 

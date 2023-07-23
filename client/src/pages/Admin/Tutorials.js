@@ -132,7 +132,7 @@ const Tutorials = () => {
     <>
     
     <Navbar/>
-     <Button sx={{marginTop: 2, marginBottom:2 ,marginLeft:'710px'}} onClick={setShow}>Add Tutorials</Button>
+     <Button sx={{marginTop: "100px", marginBottom:2 ,marginLeft:'710px'}} onClick={setShow}>Add Tutorials</Button>
 
      <div className={classes.searchContainer}>
     
@@ -178,7 +178,7 @@ const Tutorials = () => {
                 {tutorial.name}
               </StyledTableCell>
               <StyledTableCell >{tutorial.description}</StyledTableCell>
-              <StyledTableCell>{tutorial.videos}</StyledTableCell>
+              <StyledTableCell>{tutorial.video}</StyledTableCell>
               <StyledTableCell  >
                 <IconButton arial-label="edit" component={Link} to={`/viewTutorials/${tutorial._id}`}>
                   <Visibility/>
